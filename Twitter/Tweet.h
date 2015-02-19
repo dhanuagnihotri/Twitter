@@ -15,8 +15,16 @@
 @property (nonatomic,strong) NSString *text;
 @property (nonatomic,strong) NSDate *createdTime;
 @property (nonatomic,strong) User *user;
+@property (nonatomic,assign) BOOL retweeted;
+@property (nonatomic, strong) NSString *retweetUserName;
+
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 +(NSArray *)tweetsWithArray:(NSArray *)array;
 
 @end
+
+
+
+
+//@property (strong, nonatomic) IBOutlet UILabel *retweetNameLabel;

@@ -13,10 +13,15 @@
 #import "TweetTableViewCell.h"
 #import "TweetDetailsViewController.h"
 #import "ComposeViewController.h"
+#import "SVProgressHUD.h"
+
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(strong, nonatomic) NSMutableArray *tweetsArray;
 @property (strong, nonatomic) IBOutlet UITableView *tweetsTableView;
+
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
 
 @end
 
@@ -25,15 +30,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tweetsArray = [[NSMutableArray alloc] init];
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil
-                                                completion:^(NSArray *tweets, NSError *error) {
-                                                for(Tweet *tweet in tweets)
-                                                {
-                                                    NSLog(@"text:%@", tweet.text);
-                                                    [self.tweetsArray addObject:tweet];
-                                                }
-                                                [self.tweetsTableView reloadData];
-                                                }];
+//    [[TwitterClient sharedInstance] homeTimelineWithParams:nil
+//                                                completion:^(NSArray *tweets, NSError *error) {
+//                                                for(Tweet *tweet in tweets)
+//                                                {
+////                                                    NSLog(@"text:%@", tweet.text);
+////                                                    NSLog(@"retweeted:%d",tweet.retweeted);
+//                                                    [self.tweetsArray addObject:tweet];
+//                                                }
+//                                                [self.tweetsTableView reloadData];
+//                                                }];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBar.barTintColor=  [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] /*#77b7ed*/;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -52,6 +58,14 @@
     
     self.tweetsTableView.dataSource = self;
     self.tweetsTableView.delegate = self;
+    
+    self.tweetsTableView.rowHeight = 100;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tweetsTableView insertSubview:self.refreshControl atIndex:0];
+    
+    [self onRefresh];
 
 }
 
@@ -60,24 +74,35 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)logoutClicked:(id)sender {
     [User logout];
+}
+
+- (void)onRefresh {
+    
+    [SVProgressHUD show];
+    [self.tweetsArray removeAllObjects];
+    
+    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        for(Tweet *tweet in tweets)
+        {
+            //NSLog(@"text:%@", tweet.text);
+            //NSLog(@"retweeted:%d",tweet.retweeted);
+            [self.tweetsArray addObject:tweet];
+        }
+
+        [SVProgressHUD dismiss];
+        [self.refreshControl endRefreshing];
+        [self.tweetsTableView reloadData];
+    }];
+    
+   
 }
 
 - (void)newClicked:(id)sender {
    ComposeViewController  *vc = [[ComposeViewController alloc]init];
     
-    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];    
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
 }
 
@@ -93,8 +118,8 @@
     TweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetTableViewCell"];
     
     Tweet *tweet = self.tweetsArray[indexPath.row];
-    cell.tweetTextLabel.text = tweet.text;
-    
+    cell.tweet = tweet;
+
     return cell;
 }
 
@@ -105,7 +130,7 @@
     TweetDetailsViewController *vc = [[TweetDetailsViewController alloc]init];
     
 //    vc.movie = self.filteredMovies[indexPath.row];
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

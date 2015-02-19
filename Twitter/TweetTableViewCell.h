@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tweet.h"
 
 @interface TweetTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *tweetTextLabel;
+
+@property (strong,nonatomic) Tweet *tweet;
 
 @end
