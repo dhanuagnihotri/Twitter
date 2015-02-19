@@ -11,6 +11,8 @@
 #import "TwitterClient.h"
 #import "Tweet.h"
 #import "TweetTableViewCell.h"
+#import "TweetDetailsViewController.h"
+#import "ComposeViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property(strong, nonatomic) NSMutableArray *tweetsArray;
@@ -41,6 +43,10 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
                                              initWithTitle:@"Sign Out" style: UIBarButtonItemStylePlain
                                              target:self action:@selector(logoutClicked:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                             initWithTitle:@"New" style: UIBarButtonItemStylePlain
+                                             target:self action:@selector(newClicked:)];
+    
     
     [self.tweetsTableView registerNib:[UINib nibWithNibName:@"TweetTableViewCell" bundle:nil] forCellReuseIdentifier:@"TweetTableViewCell"];
     
@@ -68,6 +74,13 @@
     [User logout];
 }
 
+- (void)newClicked:(id)sender {
+   ComposeViewController  *vc = [[ComposeViewController alloc]init];
+    
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];    
+    [self presentViewController:nvc animated:YES completion:nil];
+}
+
 #pragma mark Tableview methods
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -89,11 +102,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-//    MovieDetailViewController *vc = [[MovieDetailViewController alloc]init];
+    TweetDetailsViewController *vc = [[TweetDetailsViewController alloc]init];
+    
 //    vc.movie = self.filteredMovies[indexPath.row];
-//    
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end
