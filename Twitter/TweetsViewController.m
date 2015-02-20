@@ -30,16 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tweetsArray = [[NSMutableArray alloc] init];
-//    [[TwitterClient sharedInstance] homeTimelineWithParams:nil
-//                                                completion:^(NSArray *tweets, NSError *error) {
-//                                                for(Tweet *tweet in tweets)
-//                                                {
-////                                                    NSLog(@"text:%@", tweet.text);
-////                                                    NSLog(@"retweeted:%d",tweet.retweeted);
-//                                                    [self.tweetsArray addObject:tweet];
-//                                                }
-//                                                [self.tweetsTableView reloadData];
-//                                                }];
+
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBar.barTintColor=  [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] /*#77b7ed*/;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -129,7 +120,7 @@
     
     TweetDetailsViewController *vc = [[TweetDetailsViewController alloc]init];
     
-//    vc.movie = self.filteredMovies[indexPath.row];
+    vc.tweet = self.tweetsArray[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -32,7 +32,7 @@
         if(user!=nil)
         {
             //Modally present tweets view
-            NSLog(@"Welcome to twitter %@", user.name);
+//            NSLog(@"Welcome to twitter %@", user.name);
             [User currentUser];
             
             TweetsViewController *vc = [[TweetsViewController alloc] init];

@@ -33,6 +33,9 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
         self.createdTime = [formatter dateFromString:createdTimeString];
+        
+        self.retweetsCount = [dictionary[@"retweet_count"] integerValue];
+        self.favoritesCount = [dictionary[@"favorite_count"] integerValue];
     }
     return self;
 }
