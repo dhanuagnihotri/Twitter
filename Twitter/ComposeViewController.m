@@ -7,8 +7,10 @@
 //
 
 #import "ComposeViewController.h"
+#import "TwitterClient.h"
 
 @interface ComposeViewController ()
+@property (strong, nonatomic) IBOutlet UITextView *tweetText;
 
 @end
 
@@ -29,7 +31,6 @@
                                               initWithTitle:@"Tweet" style: UIBarButtonItemStylePlain
                                               target:self action:@selector(tweetClicked)];
 
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,6 +45,15 @@
 
 -(void)tweetClicked
 {
+    if(self.tweetText.text.length)
+    {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+        params[@"status"] = @"Hello Codepath";
+        
+        [[TwitterClient sharedInstance] tweetWithParams:params completion:^(NSDictionary *result, NSError *error) {
+            NSLog(@"Send a tweet");
+        }];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

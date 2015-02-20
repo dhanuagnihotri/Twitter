@@ -41,7 +41,7 @@
                                              initWithTitle:@"Sign Out" style: UIBarButtonItemStylePlain
                                              target:self action:@selector(logoutClicked:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithTitle:@"New" style: UIBarButtonItemStylePlain
+                                             initWithTitle:@"Compose" style: UIBarButtonItemStylePlain
                                              target:self action:@selector(newClicked:)];
     
     

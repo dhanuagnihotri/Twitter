@@ -37,9 +37,9 @@
     [self.navigationController.navigationBar
     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.title = @"Tweet";
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-//                                              initWithTitle:@"Compose" style: UIBarButtonItemStylePlain
-//                                              target:self action:@selector(newClicked:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithTitle:@"Compose" style: UIBarButtonItemStylePlain
+                                              target:self action:@selector(newClicked:)];
     
     if(!self.tweet.retweeted)
     {
