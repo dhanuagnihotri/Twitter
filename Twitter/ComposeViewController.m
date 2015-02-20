@@ -13,6 +13,7 @@
 @interface ComposeViewController () <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *tweetText;
 @property (strong, nonatomic) UILabel *navLabel;
+@property (strong, nonatomic) Tweet *tweetResult;
 
 @end
 
@@ -51,11 +52,13 @@
 
 -(void)cancelClicked
 {
+    [self.tweetText resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)tweetClicked
 {
+    [self.tweetText resignFirstResponder];
     if(self.tweetText.text.length)
     {
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
@@ -63,8 +66,11 @@
         
         [[TwitterClient sharedInstance] tweetWithParams:params completion:^(NSDictionary *result, NSError *error) {
             NSLog(@"Send a tweet");
+            self.tweetResult = [[Tweet alloc] initWithDictionary:result];
+            [self.delegate ComposeViewController:self didsendTweet:self.tweetResult];
         }];
     }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

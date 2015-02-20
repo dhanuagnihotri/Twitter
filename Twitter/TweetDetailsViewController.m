@@ -39,7 +39,7 @@
     self.title = @"Tweet";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithTitle:@"Compose" style: UIBarButtonItemStylePlain
-                                              target:self action:@selector(newClicked:)];
+                                              target:self action:@selector(Compose)];
     
     if(!self.tweet.retweeted)
     {

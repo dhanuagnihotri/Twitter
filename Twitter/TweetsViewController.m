@@ -16,7 +16,7 @@
 #import "SVProgressHUD.h"
 
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
 @property(strong, nonatomic) NSMutableArray *tweetsArray;
 @property (strong, nonatomic) IBOutlet UITableView *tweetsTableView;
 
@@ -42,7 +42,7 @@
                                              target:self action:@selector(logoutClicked:)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                              initWithTitle:@"Compose" style: UIBarButtonItemStylePlain
-                                             target:self action:@selector(newClicked:)];
+                                              target:self action:@selector(composeClicked:)];
     
     
     [self.tweetsTableView registerNib:[UINib nibWithNibName:@"TweetTableViewCell" bundle:nil] forCellReuseIdentifier:@"TweetTableViewCell"];
@@ -86,12 +86,11 @@
         [self.refreshControl endRefreshing];
         [self.tweetsTableView reloadData];
     }];
-    
-   
 }
 
-- (void)newClicked:(id)sender {
+- (void)composeClicked:(id)sender {
    ComposeViewController  *vc = [[ComposeViewController alloc]init];
+    vc.delegate = self;
     
     UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
@@ -124,4 +123,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma Composeviewcontroller delegate
+-(void)ComposeViewController:(ComposeViewController *)composeViewController didsendTweet:(Tweet *)tweet
+{
+    NSLog(@"I got this event in tweets view controller");
+    [self.tweetsArray insertObject:tweet atIndex:0];
+    [self.tweetsTableView reloadData];
+    
+}
 @end
