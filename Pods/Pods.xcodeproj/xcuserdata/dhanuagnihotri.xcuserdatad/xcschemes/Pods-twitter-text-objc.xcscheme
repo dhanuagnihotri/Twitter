@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D21E36F603CD209D9246A4EA"
-               BuildableName = "libPods-BDBOAuth1Manager.a"
-               BlueprintName = "Pods-BDBOAuth1Manager"
+               BlueprintIdentifier = "A70872B0785084AD720F3C80"
+               BuildableName = "libPods-twitter-text-objc.a"
+               BlueprintName = "Pods-twitter-text-objc"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

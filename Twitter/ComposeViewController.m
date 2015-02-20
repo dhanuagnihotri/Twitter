@@ -8,9 +8,11 @@
 
 #import "ComposeViewController.h"
 #import "TwitterClient.h"
+#import "TwitterText.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *tweetText;
+@property (strong, nonatomic) UILabel *navLabel;
 
 @end
 
@@ -30,6 +32,15 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                               initWithTitle:@"Tweet" style: UIBarButtonItemStylePlain
                                               target:self action:@selector(tweetClicked)];
+    
+    self.navLabel = [[UILabel alloc] initWithFrame:CGRectMake(235,8,80,30)];
+    self.navLabel.text = @"140";
+    self.navLabel.textColor = [UIColor grayColor];
+    [self.navigationController.navigationBar addSubview:self.navLabel];
+    [self.navLabel setBackgroundColor:[UIColor clearColor]];
+    
+    self.tweetText.delegate = self;
+    
 
 }
 
@@ -48,13 +59,24 @@
     if(self.tweetText.text.length)
     {
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
-        params[@"status"] = @"Hello Codepath";
+        params[@"status"] = self.tweetText.text;
         
         [[TwitterClient sharedInstance] tweetWithParams:params completion:^(NSDictionary *result, NSError *error) {
             NSLog(@"Send a tweet");
         }];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma textview methods 
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.navLabel.text = [NSString stringWithFormat:@"%ld",[TwitterText remainingCharacterCount:self.tweetText.text]];
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.tweetText.text = @""; //clear out the placeholder text
 }
 
 @end

@@ -18,7 +18,7 @@ Time spent: `<Number of hours spent>`
 
 #### Optional
 
-- [ ] When composing, you should have a countdown in the upper right for the tweet limit.
+- [X] When composing, you should have a countdown in the upper right for the tweet limit.
 - [ ] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
 - [ ] Retweeting and favoriting should increment the retweet and favorite count.
 - [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
@@ -28,3 +28,10 @@ Time spent: `<Number of hours spent>`
 ### Walkthrough
 
 ![Video Walkthrough](...)
+
+Libraries:
+- SVProgressHUD
+- AFNetworking 
+- BDBOAuth1Manager
+- SVPullToRefresh
+- SevenSwitch

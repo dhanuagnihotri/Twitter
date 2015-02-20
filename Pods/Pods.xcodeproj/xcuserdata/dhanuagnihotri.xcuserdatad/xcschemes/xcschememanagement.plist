@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-twitter-text-objc.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8848641627BC0D2F2230DF9A</key>
+		<key>1B4EC8BE2E999DE16C98CC70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2234F2E9433C109FE30FD78</key>
+		<key>360998464B4C850639BFD345</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BF59B6D0629C944E755E1E4B</key>
+		<key>391D034037FCBD802A335153</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BFCBD2252067DB88CF26E728</key>
+		<key>98A1A5C475FEEBEFDD88ED7A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F08045976145EC9B6E729C37</key>
+		<key>A70872B0785084AD720F3C80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D21E36F603CD209D9246A4EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

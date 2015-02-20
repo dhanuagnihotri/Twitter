@@ -66,3 +66,9 @@
 #define COCOAPODS_VERSION_MINOR_SVPullToRefresh 4
 #define COCOAPODS_VERSION_PATCH_SVPullToRefresh 1
 
+// twitter-text-objc
+#define COCOAPODS_POD_AVAILABLE_twitter_text_objc
+#define COCOAPODS_VERSION_MAJOR_twitter_text_objc 1
+#define COCOAPODS_VERSION_MINOR_twitter_text_objc 6
+#define COCOAPODS_VERSION_PATCH_twitter_text_objc 1
+
