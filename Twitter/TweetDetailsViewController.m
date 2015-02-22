@@ -25,6 +25,9 @@
 - (IBAction)onReplyPressed:(id)sender;
 - (IBAction)onRetweetPressed:(id)sender;
 - (IBAction)onFavoritesPressed:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *replyButton;
+@property (strong, nonatomic) IBOutlet UIButton *retweetButton;
+@property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 
 @end
 
@@ -64,7 +67,7 @@
     
     self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
     self.favoritesLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.favoritesCount];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,9 +91,10 @@
         NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
         
         [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
-            NSLog(@"Retweet successful");
+            [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
         }];
     }
+
 
 }
 
@@ -102,7 +106,7 @@
         params[@"id"] = tweetID;
     
         [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
-        NSLog(@"Favorites successful");
+            [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
         }];
     }
 }
