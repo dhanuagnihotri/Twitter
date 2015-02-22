@@ -11,9 +11,9 @@
 #import "TwitterText.h"
 
 @interface ComposeViewController () <UITextViewDelegate>
-@property (strong, nonatomic) IBOutlet UITextView *tweetText;
 @property (strong, nonatomic) UILabel *navLabel;
 @property (strong, nonatomic) Tweet *tweetResult;
+@property (strong, nonatomic) IBOutlet UITextView *tweetText;
 
 @end
 
@@ -41,8 +41,10 @@
     [self.navLabel setBackgroundColor:[UIColor clearColor]];
     
     self.tweetText.delegate = self;
-    
-
+    if(self.replyUser.length !=0)
+    {
+        self.tweetText.text = [NSString stringWithFormat:@"@%@ ",self.replyUser];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,7 +84,8 @@
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    self.tweetText.text = @""; //clear out the placeholder text
+    if([self.tweetText.text isEqualToString:@"What's happening ? "])
+        self.tweetText.text = @""; //clear out the placeholder text
 }
 
 @end

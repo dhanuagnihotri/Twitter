@@ -100,6 +100,7 @@
                     <state key="normal" image="reply">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="highlighted" image="reply_hover"/>
                     <connections>
                         <action selector="onReplyPressed:" destination="-1" eventType="touchUpInside" id="fyd-Op-ss2"/>
                     </connections>
@@ -109,6 +110,8 @@
                     <state key="normal" image="retweet">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="retweet_on"/>
+                    <state key="highlighted" image="retweet_hover"/>
                     <connections>
                         <action selector="onRetweetPressed:" destination="-1" eventType="touchUpInside" id="gg4-Ke-BYw"/>
                     </connections>
@@ -118,6 +121,8 @@
                     <state key="normal" image="favorite">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="favorite_on"/>
+                    <state key="highlighted" image="favorite_hover"/>
                     <connections>
                         <action selector="onFavoritesPressed:" destination="-1" eventType="touchUpInside" id="lAG-AD-B2O"/>
                     </connections>
@@ -129,8 +134,13 @@
     </objects>
     <resources>
         <image name="favorite" width="16" height="16"/>
+        <image name="favorite_hover" width="16" height="16"/>
+        <image name="favorite_on" width="16" height="16"/>
         <image name="reply" width="16" height="16"/>
+        <image name="reply_hover" width="16" height="16"/>
         <image name="retweet" width="19" height="16"/>
+        <image name="retweet_hover" width="19" height="16"/>
+        <image name="retweet_on" width="19" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

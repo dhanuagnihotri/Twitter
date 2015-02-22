@@ -8,6 +8,8 @@
 
 #import "TweetTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
+#import "TwitterClient.h"
 
 @interface TweetTableViewCell()
 @property (strong, nonatomic) IBOutlet UIImageView *retweetImageView;
@@ -85,9 +87,33 @@
 }
 
 - (IBAction)replyButtonPressed:(id)sender {
+    
+    [self.delegate tweetCell:self replyButtonClicked:YES];
 }
+
 - (IBAction)retweetButtonPressed:(id)sender {
+    NSLog(@" Retweet tweet id:%ld",self.tweet.tweetID);
+    if(self.tweet.tweetID)
+    {
+        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
+        
+        [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
+            NSLog(@"Retweet successful");
+        }];
+    }
 }
+
 - (IBAction)favoriteButtonPressed:(id)sender {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    if(self.tweet.tweetID)
+    {
+        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
+        params[@"id"] = tweetID;
+        
+        [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+            NSLog(@"Favorites successful");
+        }];
+    }
 }
+
 @end

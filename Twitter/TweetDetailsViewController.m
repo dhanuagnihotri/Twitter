@@ -8,6 +8,8 @@
 
 #import "TweetDetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "TwitterClient.h"
+#import "ComposeViewController.h"
 
 @interface TweetDetailsViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *retweetImageView;
@@ -72,11 +74,36 @@
 
 
 - (IBAction)onReplyPressed:(id)sender {
+    ComposeViewController  *vc = [[ComposeViewController alloc]init];
+    vc.replyUser = self.tweet.user.screenName;
+    
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 - (IBAction)onRetweetPressed:(id)sender {
+    NSLog(@" Retweet tweet id:%ld",self.tweet.tweetID);
+    if(self.tweet.tweetID)
+    {
+        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
+        
+        [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
+            NSLog(@"Retweet successful");
+        }];
+    }
+
 }
 
 - (IBAction)onFavoritesPressed:(id)sender {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    if(self.tweet.tweetID)
+    {
+        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
+        params[@"id"] = tweetID;
+    
+        [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+        NSLog(@"Favorites successful");
+        }];
+    }
 }
 @end

@@ -14,9 +14,10 @@
 #import "TweetDetailsViewController.h"
 #import "ComposeViewController.h"
 #import "SVProgressHUD.h"
+#import "SVPullToRefresh.h"
 
 
-@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate>
+@interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate>
 @property(strong, nonatomic) NSMutableArray *tweetsArray;
 @property (strong, nonatomic) IBOutlet UITableView *tweetsTableView;
 
@@ -57,6 +58,12 @@
     [self.tweetsTableView insertSubview:self.refreshControl atIndex:0];
     
     [self onRefresh];
+    
+    // setup infinite scrolling
+    __weak TweetsViewController *weakSelf = self;
+    [self.tweetsTableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottom];
+    }];
 
 }
 
@@ -78,7 +85,7 @@
         for(Tweet *tweet in tweets)
         {
             //NSLog(@"text:%@", tweet.text);
-            //NSLog(@"retweeted:%d",tweet.retweeted);
+//            NSLog(@"tweet id:%ld",tweet.tweetID);
             [self.tweetsArray addObject:tweet];
         }
 
@@ -88,12 +95,48 @@
     }];
 }
 
+- (void)insertRowAtBottom {
+    __weak TweetsViewController *weakSelf = self;
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        
+//        [self.client searchWithTerm:self.searchString offset:@(self.offset) params:self.filters success:^(AFHTTPRequestOperation *operation, id response) {
+//            //        NSLog(@"response: %@", response);
+//            NSArray *businessDictionary = response[@"businesses"];
+//            self.businessesResults = [Business BusinessWithDictionary:businessDictionary];
+//            if(self.businessesResults.count>0)
+//            {
+//                [self.businesses addObjectsFromArray:self.businessesResults];
+                [weakSelf.tweetsTableView.infiniteScrollingView stopAnimating];
+//                
+//            }
+            [self.tweetsTableView reloadData];
+//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//            NSLog(@"error: %@", [error description]);
+//        }];
+    });
+}
+
 - (void)composeClicked:(id)sender {
    ComposeViewController  *vc = [[ComposeViewController alloc]init];
     vc.delegate = self;
     
     UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+-(NSInteger)find_min
+{
+    Tweet *tweet = self.tweetsArray[0];
+    NSInteger min = tweet.tweetID;
+    for(Tweet *tweet in self.tweetsArray)
+    {
+        if(min>tweet.tweetID)
+            min=tweet.tweetID;
+    }
+    
+    return min;
 }
 
 #pragma mark Tableview methods
@@ -107,6 +150,7 @@
 {
     TweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetTableViewCell"];
     
+    cell.delegate = self;
     Tweet *tweet = self.tweetsArray[indexPath.row];
     cell.tweet = tweet;
 
@@ -126,9 +170,18 @@
 #pragma Composeviewcontroller delegate
 -(void)ComposeViewController:(ComposeViewController *)composeViewController didsendTweet:(Tweet *)tweet
 {
-    NSLog(@"I got this event in tweets view controller");
     [self.tweetsArray insertObject:tweet atIndex:0];
     [self.tweetsTableView reloadData];
-    
 }
+
+#pragma Tableviewcell delegate
+-(void)tweetCell:(TweetTableViewCell *)cell replyButtonClicked:(BOOL)state
+{
+    ComposeViewController  *vc = [[ComposeViewController alloc]init];
+    vc.replyUser = cell.tweet.user.screenName;
+    
+    UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
+}
+
 @end

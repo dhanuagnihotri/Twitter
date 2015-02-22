@@ -96,4 +96,26 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
     
 }
 
+-(void)favoriteWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion
+{
+    [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"tweet favorite response %@",responseObject);
+        completion(responseObject,nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+    
+}
+
+-(void)retweetWithID:(NSString*)tweetID completion:(void (^)(NSDictionary *result, NSError *error))completion
+{
+    NSString *api = [NSString stringWithFormat:@"https://api.twitter.com/1.1/statuses/retweet/%@.json",tweetID];
+    [self POST:api parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completion(responseObject,nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+    
+}
+
 @end
