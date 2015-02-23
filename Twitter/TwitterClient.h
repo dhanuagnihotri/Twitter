@@ -19,6 +19,7 @@
 -(void)tweetWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion;
 -(void)favoriteWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion;
 -(void)unfavoriteWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion;
--(void)retweetWithID:(NSString*)id completion:(void (^)(NSDictionary *result, NSError *error))completion;
+-(void)retweetWithID:(NSString*)tweetID completion:(void (^)(NSDictionary *result, NSError *error))completion;
+-(void)unretweetWithID:(NSString*)tweetID completion:(void (^)(NSDictionary *result, NSError *error))completion;
 
 @end

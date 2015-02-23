@@ -11,6 +11,7 @@
 #import "TwitterClient.h"
 #import "ComposeViewController.h"
 #import "TTTAttributedLabel.h"
+#import "User.h"
 
 @interface TweetDetailsViewController () <TTTAttributedLabelDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *retweetImageView;
@@ -107,18 +108,21 @@
     if(self.tweet.tweetID)
     {
         NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
+        User *user = [User currentUser];
         
         if(!self.tweet.userRetweeted) //user is retweeting the status
         {
             [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
+                user.retweetDictionary[tweetID]=result[@"id"];
                 [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
                 self.tweet.retweetsCount++;
                 self.tweet.userRetweeted = TRUE;
+                
             }];
         }
         else //unretweet the status
         {
-            [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
+            [[TwitterClient sharedInstance] unretweetWithID:user.retweetDictionary[tweetID] completion:^(NSDictionary *result, NSError *error) {
                 [self.retweetButton setImage:[UIImage imageNamed:@"retweet"] forState:UIControlStateNormal];
                 self.tweet.retweetsCount--;
                 self.tweet.userRetweeted = FALSE;

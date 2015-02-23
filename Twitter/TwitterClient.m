@@ -76,7 +76,6 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
 -(void)homeTimelineWithParams:(NSDictionary*)params completion:(void (^)(NSArray *tweets, NSError *error))completion
 {
     [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response object %@",responseObject);
         NSArray *tweets = [Tweet tweetsWithArray:responseObject];
         completion(tweets, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -120,5 +119,16 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
         completion(nil, error);
     }];
 }
+
+-(void)unretweetWithID:(NSString*)tweetID completion:(void (^)(NSDictionary *result, NSError *error))completion
+{
+    NSString *api = [NSString stringWithFormat:@"https://api.twitter.com/1.1/statuses/destroy/%@.json",tweetID];
+    [self POST:api parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completion(responseObject,nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
 
 @end
