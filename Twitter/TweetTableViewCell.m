@@ -51,8 +51,7 @@
         TTTAttributedLabel *label = (TTTAttributedLabel *)self.tweetLabel;
         label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
         label.delegate = self;
-        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor],
-                                  NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle] };
+        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor], };
         
         label.text = text;
     }

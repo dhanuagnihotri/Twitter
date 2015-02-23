@@ -60,8 +60,7 @@
         TTTAttributedLabel *label = (TTTAttributedLabel *)self.textLabel;
         label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
         label.delegate = self;
-        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor],
-                                  NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle] };
+        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor], };
 
         label.text = text;
     }
@@ -70,7 +69,7 @@
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.tweet.user.profileImageURL]];
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yy HH:mm a"];
+    [dateFormatter setDateFormat:@"dd/MM/yy hh:mm a"];
     self.timeCreatedLabel.text = [dateFormatter stringFromDate:self.tweet.createdTime ];
     
     self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];

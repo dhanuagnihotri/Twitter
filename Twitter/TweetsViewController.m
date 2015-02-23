@@ -154,6 +154,13 @@
     Tweet *tweet = self.tweetsArray[indexPath.row];
     cell.tweet = tweet;
 
+    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)] )
+        cell.preservesSuperviewLayoutMargins = false;
+    if([cell respondsToSelector:@selector(setSeparatorInset:)] )
+        cell.separatorInset = UIEdgeInsetsMake(0, 4, 0, 0);
+    if([cell respondsToSelector:@selector(setLayoutMargins:)] )
+        cell.layoutMargins = UIEdgeInsetsZero;
+    
     return cell;
 }
 
