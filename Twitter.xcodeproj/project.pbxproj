@@ -127,14 +127,13 @@
 			isa = PBXGroup;
 			children = (
 				9592CCD71A93FA81001B2C57 /* Models */,
-				95603D861A9300F000B7827F /* AppDelegate.h */,
-				95603D871A9300F000B7827F /* AppDelegate.m */,
-				95603DAD1A93C26300B7827F /* TwitterClient.h */,
-				95603DAE1A93C26300B7827F /* TwitterClient.m */,
-				9592CD2C1A9B0126001B2C57 /* ViewController */,
+				9592CD2F1A9B6C1D001B2C57 /* API */,
 				9592CD2E1A9B0149001B2C57 /* View */,
+				9592CD2C1A9B0126001B2C57 /* ViewController */,
 				95603D8F1A9300F000B7827F /* Images.xcassets */,
 				95603D911A9300F000B7827F /* LaunchScreen.xib */,
+				95603D861A9300F000B7827F /* AppDelegate.h */,
+				95603D871A9300F000B7827F /* AppDelegate.m */,
 				95603D821A9300F000B7827F /* Supporting Files */,
 			);
 			path = Twitter;
@@ -204,6 +203,15 @@
 				9592CD1A1A9550E6001B2C57 /* TweetTableViewCell.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		9592CD2F1A9B6C1D001B2C57 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				95603DAD1A93C26300B7827F /* TwitterClient.h */,
+				95603DAE1A93C26300B7827F /* TwitterClient.m */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		B1F387996DEBCBA156667CD4 /* Frameworks */ = {
