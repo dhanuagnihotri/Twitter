@@ -84,8 +84,6 @@
         [self.tweetsArray removeAllObjects];
         for(Tweet *tweet in tweets)
         {
-            //NSLog(@"text:%@", tweet.text);
-//            NSLog(@"tweet id:%ld",tweet.tweetID);
             [self.tweetsArray addObject:tweet];
         }
 
@@ -173,6 +171,13 @@
     vc.tweet = self.tweetsArray[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+//-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    TweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetTableViewCell"];
+//    cell.tweet = self.tweetsArray[indexPath.row];
+//    CGSize size = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+//    return size.height + 1;
+//}
 
 #pragma Composeviewcontroller delegate
 -(void)ComposeViewController:(ComposeViewController *)composeViewController didsendTweet:(Tweet *)tweet

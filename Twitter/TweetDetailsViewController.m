@@ -117,7 +117,7 @@
                 [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
                 self.tweet.retweetsCount++;
                 self.tweet.userRetweeted = TRUE;
-                
+                self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
             }];
         }
         else //unretweet the status
@@ -126,9 +126,9 @@
                 [self.retweetButton setImage:[UIImage imageNamed:@"retweet"] forState:UIControlStateNormal];
                 self.tweet.retweetsCount--;
                 self.tweet.userRetweeted = FALSE;
+                self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
             }];
         }
-        self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
     }
 }
 

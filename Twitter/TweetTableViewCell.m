@@ -29,6 +29,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 - (IBAction)favoriteButtonPressed:(id)sender;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *verticalContraintRetweetImage;
 @end
 
 
@@ -46,6 +47,7 @@
 {
     NSString *text = [self.tweet.text stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     //self.tweetLabel.text = text;
+    //self.tweetLabel.preferredMaxLayoutWidth = self.tweetLabel.frame.size.width;
     if ([self.tweetLabel isKindOfClass:[TTTAttributedLabel class]])
     {
         TTTAttributedLabel *label = (TTTAttributedLabel *)self.tweetLabel;
@@ -61,11 +63,13 @@
     self.timeLabel.text = [self stringFromTimeInterval];
     if(!self.tweet.retweeted)
     {
+        self.verticalContraintRetweetImage.constant = 0;
         self.retweetNameLabel.hidden = YES;
         self.retweetImageView.hidden = YES;
     }
     else
     {
+        self.verticalContraintRetweetImage.constant = 2;
         self.retweetNameLabel.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.retweetUserName];
         self.retweetNameLabel.hidden = NO;
         self.retweetImageView.hidden = NO;
