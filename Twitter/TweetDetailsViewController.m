@@ -75,6 +75,11 @@
     self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
     self.favoritesLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.favoritesCount];
     
+    if(self.tweet.userRetweeted)
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
+    if(self.tweet.userFavorited)
+        [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,10 +109,11 @@
         
         [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
             [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
+            self.tweet.retweetsCount++;
+            self.tweet.userRetweeted = TRUE;
+            self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
         }];
     }
-
-
 }
 
 - (IBAction)onFavoritesPressed:(id)sender {
@@ -118,6 +124,9 @@
         params[@"id"] = tweetID;
     
         [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+            self.tweet.favoritesCount++;
+            self.tweet.userFavorited = TRUE;
+            self.favoritesLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.favoritesCount];
             [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
         }];
     }

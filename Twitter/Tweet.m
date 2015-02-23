@@ -38,6 +38,8 @@
         self.favoritesCount = [dictionary[@"favorite_count"] integerValue];
         
         self.tweetID = [dictionary[@"id"] integerValue];
+        self.userFavorited = [dictionary[@"favorited"] boolValue];
+        self.userRetweeted = [dictionary[@"retweeted"] boolValue];
     }
     return self;
 }
