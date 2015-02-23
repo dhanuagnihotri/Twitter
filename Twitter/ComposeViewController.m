@@ -82,7 +82,6 @@
         }
 
         [[TwitterClient sharedInstance] tweetWithParams:params completion:^(NSDictionary *result, NSError *error) {
-            NSLog(@"Send a tweet");
             self.tweetResult = [[Tweet alloc] initWithDictionary:result];
             [self.delegate ComposeViewController:self didsendTweet:self.tweetResult];
         }];

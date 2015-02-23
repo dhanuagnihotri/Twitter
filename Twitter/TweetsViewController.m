@@ -97,25 +97,21 @@
 
 - (void)insertRowAtBottom {
     __weak TweetsViewController *weakSelf = self;
-    int64_t delayInSeconds = 2.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-//        [self.client searchWithTerm:self.searchString offset:@(self.offset) params:self.filters success:^(AFHTTPRequestOperation *operation, id response) {
-//            //        NSLog(@"response: %@", response);
-//            NSArray *businessDictionary = response[@"businesses"];
-//            self.businessesResults = [Business BusinessWithDictionary:businessDictionary];
-//            if(self.businessesResults.count>0)
-//            {
-//                [self.businesses addObjectsFromArray:self.businessesResults];
-                [weakSelf.tweetsTableView.infiniteScrollingView stopAnimating];
-//                
-//            }
-            [self.tweetsTableView reloadData];
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            NSLog(@"error: %@", [error description]);
-//        }];
-    });
+    
+    NSInteger min_id = [self find_min]-1;
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:2];
+    params[@"count"] = @20;
+    params[@"max_id"] = @(min_id);
+    
+    [[TwitterClient sharedInstance] homeTimelineWithParams:params completion:^(NSArray *tweets, NSError *error)
+     {
+         for(Tweet *tweet in tweets)
+         {
+             [weakSelf.tweetsArray addObject:tweet];
+         }
+         [weakSelf.tweetsTableView.infiniteScrollingView stopAnimating];
+         [weakSelf.tweetsTableView reloadData];
+     }];
 }
 
 - (void)composeClicked:(id)sender {
@@ -130,10 +126,14 @@
 {
     Tweet *tweet = self.tweetsArray[0];
     NSInteger min = tweet.tweetID;
+    NSLog(@"tweet ID %ld",tweet.tweetID);
     for(Tweet *tweet in self.tweetsArray)
     {
         if(min>tweet.tweetID)
+        {
             min=tweet.tweetID;
+            NSLog(@"min ID %ld",min);
+        }
     }
     
     return min;

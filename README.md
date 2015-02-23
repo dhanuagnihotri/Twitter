@@ -23,7 +23,7 @@ Time spent: 20
 - [X] Retweeting and favoriting should increment the retweet and favorite count.
 - [X] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
 - [X] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [X] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
 ### Walkthrough
 
