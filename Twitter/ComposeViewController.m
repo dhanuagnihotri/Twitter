@@ -9,11 +9,16 @@
 #import "ComposeViewController.h"
 #import "TwitterClient.h"
 #import "TwitterText.h"
+#import "User.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ComposeViewController () <UITextViewDelegate>
 @property (strong, nonatomic) UILabel *navLabel;
 @property (strong, nonatomic) Tweet *tweetResult;
 @property (strong, nonatomic) IBOutlet UITextView *tweetText;
+@property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @end
 
@@ -45,6 +50,12 @@
     {
         self.tweetText.text = [NSString stringWithFormat:@"@%@ ",self.replyUser];
     }
+    
+    User *user = [User currentUser];
+    self.nameLabel.text = user.name;
+    self.usernameLabel.text = [NSString stringWithFormat:@"@%@ ",user.screenName];
+    [self.profileImageView setImageWithURL:[NSURL URLWithString:user.profileImageURL]];
+
 }
 
 - (void)didReceiveMemoryWarning {

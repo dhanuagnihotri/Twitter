@@ -10,8 +10,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "TwitterClient.h"
 #import "ComposeViewController.h"
+#import "TTTAttributedLabel.h"
 
-@interface TweetDetailsViewController ()
+@interface TweetDetailsViewController () <TTTAttributedLabelDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *retweetImageView;
 @property (strong, nonatomic) IBOutlet UILabel *retweetNameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
@@ -42,10 +43,7 @@
     [self.navigationController.navigationBar
     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.title = @"Tweet";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Compose" style: UIBarButtonItemStylePlain
-                                              target:self action:@selector(Compose)];
-    
+   
     if(!self.tweet.retweeted)
     {
         self.retweetNameLabel.hidden = YES;
@@ -57,6 +55,9 @@
     }
     
     self.textLabel.text = self.tweet.text;
+    TTTAttributedLabel *label = (TTTAttributedLabel *)self.textLabel;
+    label.delegate = self;
+    label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.nameLabel.text = self.tweet.user.name;
     self.twitterNameLabel.text = [NSString stringWithFormat:@"@ %@", self.tweet.user.screenName];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.tweet.user.profileImageURL]];
@@ -73,6 +74,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    NSLog(@"I got called");
 }
 
 

@@ -6,7 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController">
             <connections>
+                <outlet property="nameLabel" destination="cx1-uq-RzQ" id="Tc3-JV-G9x"/>
+                <outlet property="profileImageView" destination="lrg-lY-h3m" id="pJa-GJ-Q1t"/>
                 <outlet property="tweetText" destination="sUa-KF-mof" id="Gef-Xv-gn4"/>
+                <outlet property="usernameLabel" destination="YlH-yr-fM1" id="aKt-2S-FRp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,21 +18,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-lY-h3m">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-lY-h3m">
                     <rect key="frame" x="8" y="91" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="2hJ-qu-YJ2"/>
+                        <constraint firstAttribute="height" constant="48" id="jCm-4d-rOv"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cx1-uq-RzQ">
-                    <rect key="frame" x="65" y="91" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cx1-uq-RzQ">
+                    <rect key="frame" x="65" y="91" width="31.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YlH-yr-fM1">
-                    <rect key="frame" x="65" y="105" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YlH-yr-fM1">
+                    <rect key="frame" x="65" y="110" width="30.5" height="14.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What's happening ? " translatesAutoresizingMaskIntoConstraints="NO" id="sUa-KF-mof">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's happening ? " translatesAutoresizingMaskIntoConstraints="NO" id="sUa-KF-mof">
                     <rect key="frame" x="2" y="147" width="312" height="318"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,7 +45,21 @@
                 </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="413" y="377"/>
+            <constraints>
+                <constraint firstItem="YlH-yr-fM1" firstAttribute="top" secondItem="cx1-uq-RzQ" secondAttribute="bottom" constant="4.5" id="2I5-uy-b09"/>
+                <constraint firstItem="lrg-lY-h3m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="91" id="4VG-qi-F37"/>
+                <constraint firstAttribute="bottom" secondItem="sUa-KF-mof" secondAttribute="bottom" constant="103" id="B0R-sp-JfA"/>
+                <constraint firstItem="lrg-lY-h3m" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="D35-wr-zKL"/>
+                <constraint firstItem="sUa-KF-mof" firstAttribute="top" secondItem="lrg-lY-h3m" secondAttribute="bottom" constant="8" id="Jfq-Bf-3PB"/>
+                <constraint firstItem="sUa-KF-mof" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="2" id="Mas-hD-EHo"/>
+                <constraint firstItem="YlH-yr-fM1" firstAttribute="leading" secondItem="lrg-lY-h3m" secondAttribute="trailing" constant="9" id="Rqg-yp-2OX"/>
+                <constraint firstItem="cx1-uq-RzQ" firstAttribute="leading" secondItem="lrg-lY-h3m" secondAttribute="trailing" constant="9" id="Ui5-J4-hSp"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YlH-yr-fM1" secondAttribute="trailing" constant="8" id="crg-lB-RPV"/>
+                <constraint firstAttribute="trailing" secondItem="sUa-KF-mof" secondAttribute="trailing" constant="6" id="gU4-DK-6PV"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cx1-uq-RzQ" secondAttribute="trailing" constant="10" id="lw6-5W-LgW"/>
+                <constraint firstItem="cx1-uq-RzQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="91" id="w0c-Vg-eVu"/>
+            </constraints>
+            <point key="canvasLocation" x="409" y="372"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

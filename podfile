@@ -5,3 +5,4 @@ pod "BDBOAuth1Manager"
 pod 'SVProgressHUD'
 pod 'SVPullToRefresh'
 pod 'twitter-text-objc', '~> 1.6'
+pod 'TTTAttributedLabel'

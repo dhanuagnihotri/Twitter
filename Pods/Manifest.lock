@@ -25,6 +25,7 @@ PODS:
     - AFNetworking/NSURLSession (~> 2.5.0)
   - SVProgressHUD (1.1.2)
   - SVPullToRefresh (0.4.1)
+  - TTTAttributedLabel (1.13.2)
   - twitter-text-objc (1.6.1)
 
 DEPENDENCIES:
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - BDBOAuth1Manager
   - SVProgressHUD
   - SVPullToRefresh
+  - TTTAttributedLabel
   - twitter-text-objc (~> 1.6)
 
 SPEC CHECKSUMS:
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   BDBOAuth1Manager: 274574557077abc873fc5688abe8b991e782749c
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
   SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
+  TTTAttributedLabel: 7c4592f9a806badb8b48dc634cb9800447c51594
   twitter-text-objc: 5b928610be8383e523aa54e783b5b16a20f5bdcd
 
 COCOAPODS: 0.35.0
