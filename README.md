@@ -33,5 +33,6 @@ Libraries:
 - SVProgressHUD
 - AFNetworking 
 - BDBOAuth1Manager
-- SVPullToRefresh
-- SevenSwitch
+- SVProgressHUD
+- twitter-text-objc
+- TTTAttributedLabel
