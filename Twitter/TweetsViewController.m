@@ -79,9 +79,9 @@
 - (void)onRefresh {
     
     [SVProgressHUD show];
-    [self.tweetsArray removeAllObjects];
     
     [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        [self.tweetsArray removeAllObjects];
         for(Tweet *tweet in tweets)
         {
             //NSLog(@"text:%@", tweet.text);
