@@ -56,8 +56,9 @@
     else
     {
         self.retweetNameLabel.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.retweetUserName];
+        self.retweetNameLabel.hidden = NO;
+        self.retweetImageView.hidden = NO;
     }
-
 }
 
 - (NSString *)stringFromTimeInterval

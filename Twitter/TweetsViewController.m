@@ -51,8 +51,8 @@
     self.tweetsTableView.dataSource = self;
     self.tweetsTableView.delegate = self;
     
-    self.tweetsTableView.rowHeight = 100;
-    
+    //self.tweetsTableView.rowHeight = UITableViewAutomaticDimension;
+    self.tweetsTableView.rowHeight = 120;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tweetsTableView insertSubview:self.refreshControl atIndex:0];
