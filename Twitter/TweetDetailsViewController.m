@@ -54,10 +54,17 @@
         self.retweetNameLabel.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.retweetUserName];
     }
     
-    self.textLabel.text = self.tweet.text;
-    TTTAttributedLabel *label = (TTTAttributedLabel *)self.textLabel;
-    label.delegate = self;
-    label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+    if ([self.textLabel isKindOfClass:[TTTAttributedLabel class]])
+    {
+        TTTAttributedLabel *label = (TTTAttributedLabel *)self.textLabel;
+        label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+        label.delegate = self;
+        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor],
+                                  NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle] };
+
+        label.text = self.tweet.text;
+        
+    }
     self.nameLabel.text = self.tweet.user.name;
     self.twitterNameLabel.text = [NSString stringWithFormat:@"@ %@", self.tweet.user.screenName];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.tweet.user.profileImageURL]];
@@ -78,7 +85,7 @@
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
 {
-    NSLog(@"I got called");
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 

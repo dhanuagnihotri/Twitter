@@ -43,7 +43,8 @@
 
 -(void)layoutSubviews
 {
-    self.tweetLabel.text = self.tweet.text;
+    NSString *text = [self.tweet.text stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    self.tweetLabel.text = text;
     self.nameLabel.text = self.tweet.user.name;
     self.twitterNameLabel.text = [NSString stringWithFormat:@"@ %@", self.tweet.user.screenName];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.tweet.user.profileImageURL]];
