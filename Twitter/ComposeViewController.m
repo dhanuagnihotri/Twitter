@@ -76,7 +76,11 @@
     {
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
         params[@"status"] = self.tweetText.text;
-        
+        if(self.replyUser.length !=0)
+        {
+            params[@"in_reply_to_status_id"] = [NSString stringWithFormat:@"%ld",self.replyID];
+        }
+
         [[TwitterClient sharedInstance] tweetWithParams:params completion:^(NSDictionary *result, NSError *error) {
             NSLog(@"Send a tweet");
             self.tweetResult = [[Tweet alloc] initWithDictionary:result];

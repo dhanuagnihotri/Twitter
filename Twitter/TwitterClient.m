@@ -76,24 +76,20 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
 -(void)homeTimelineWithParams:(NSDictionary*)params completion:(void (^)(NSArray *tweets, NSError *error))completion
 {
     [self GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"tweets %@",responseObject);
         NSArray *tweets = [Tweet tweetsWithArray:responseObject];
         completion(tweets, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
-    
 }
 
 -(void)tweetWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion
 {    
     [self POST:@"1.1/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"tweet response %@",responseObject);
         completion(responseObject,nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
-    
 }
 
 -(void)favoriteWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion
@@ -103,7 +99,6 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
-    
 }
 
 -(void)unfavoriteWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion
@@ -113,7 +108,6 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
-    
 }
 
 -(void)retweetWithID:(NSString*)tweetID completion:(void (^)(NSDictionary *result, NSError *error))completion
@@ -124,7 +118,6 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         completion(nil, error);
     }];
-    
 }
 
 @end

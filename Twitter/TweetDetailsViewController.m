@@ -96,6 +96,7 @@
 - (IBAction)onReplyPressed:(id)sender {
     ComposeViewController  *vc = [[ComposeViewController alloc]init];
     vc.replyUser = self.tweet.user.screenName;
+    vc.replyID = self.tweet.tweetID;
     
     UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];

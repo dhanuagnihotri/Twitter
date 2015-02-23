@@ -186,6 +186,7 @@
 {
     ComposeViewController  *vc = [[ComposeViewController alloc]init];
     vc.replyUser = cell.tweet.user.screenName;
+    vc.replyID = cell.tweet.tweetID;
     
     UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
