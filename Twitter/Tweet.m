@@ -7,6 +7,8 @@
 //
 
 #import "Tweet.h"
+#import "TwitterClient.h"
+#import "User.h"
 
 @implementation Tweet
 
@@ -55,4 +57,51 @@
     
     return tweets;
 }
+
+-(void)retweet
+{
+    if(self.tweetID)
+    {
+//        User *user = [User currentUser];
+        self.retweetsCount++;
+        self.userRetweeted = TRUE;
+        [[TwitterClient sharedInstance] retweetWithID:[NSString stringWithFormat:@"%ld",self.tweetID] completion:^(NSDictionary *result, NSError *error) {
+    //            user.retweetDictionary[tweetID]=result[@"id"];
+            }];
+    }
+}
+
+-(void)unretweet
+{
+    
+}
+
+-(void)favorite
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    if(self.tweetID)
+    {
+        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweetID];
+        params[@"id"] = tweetID;
+        self.favoritesCount++;
+        self.userFavorited = TRUE;
+        [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+        }];
+    }
+}
+
+-(void)unfavorite
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    if(self.tweetID)
+    {
+        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweetID];
+        params[@"id"] = tweetID;
+        self.favoritesCount--;
+        self.userFavorited = FALSE;
+        [[TwitterClient sharedInstance] unfavoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+        }];
+    }
+}
+
 @end

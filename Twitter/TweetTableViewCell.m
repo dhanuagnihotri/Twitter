@@ -9,7 +9,6 @@
 #import "TweetTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
-#import "TwitterClient.h"
 #import "TTTAttributedLabel.h"
 
 @interface TweetTableViewCell() <TTTAttributedLabelDelegate>
@@ -29,7 +28,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 - (IBAction)favoriteButtonPressed:(id)sender;
 
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *verticalContraintRetweetImage;
 @end
 
 
@@ -63,13 +61,13 @@
     self.timeLabel.text = [self stringFromTimeInterval];
     if(!self.tweet.retweeted)
     {
-        self.verticalContraintRetweetImage.constant = 0;
+       // self.verticalContraintRetweetImage.constant = 0;
         self.retweetNameLabel.hidden = YES;
         self.retweetImageView.hidden = YES;
     }
     else
     {
-        self.verticalContraintRetweetImage.constant = 2;
+        //self.verticalContraintRetweetImage.constant = 2;
         self.retweetNameLabel.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.retweetUserName];
         self.retweetNameLabel.hidden = NO;
         self.retweetImageView.hidden = NO;
@@ -125,40 +123,28 @@
 }
 
 - (IBAction)retweetButtonPressed:(id)sender {
-    NSLog(@" Retweet tweet id:%ld",self.tweet.tweetID);
-    if(self.tweet.tweetID)
+    if(!self.tweet.userRetweeted) //user is retweeting the status
     {
-        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
-        
-        [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
-            NSLog(@"Retweet successful");
-        }];
+        [self.tweet retweet];
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
+    }
+    else //unretweet the status
+    {
+        [self.tweet unretweet];
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet"] forState:UIControlStateNormal];
     }
 }
 
 - (IBAction)favoriteButtonPressed:(id)sender {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
-    if(self.tweet.tweetID)
+    if(!self.tweet.userFavorited) //favorite the status
     {
-        NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
-        params[@"id"] = tweetID;
-        
-        if(!self.tweet.userFavorited) //favorite the status
-        {
-            [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
-                self.tweet.favoritesCount++;
-                self.tweet.userFavorited = TRUE;
-                [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
-            }];
-        }
-        else //unfavorite the status
-        {
-            [[TwitterClient sharedInstance] unfavoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
-                self.tweet.favoritesCount--;
-                self.tweet.userFavorited = FALSE;
-                [self.favoriteButton setImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
-            }];
-        }
+        [self.tweet favorite];
+        [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
+    }
+    else //unfavorite the status
+    {
+        [self.tweet unfavorite];
+        [self.favoriteButton setImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
     }
 }
 

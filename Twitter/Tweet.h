@@ -26,6 +26,12 @@
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 +(NSArray *)tweetsWithArray:(NSArray *)array;
 
+-(void)retweet;
+-(void)unretweet;
+
+-(void)favorite;
+-(void)unfavorite;
+
 @end
 
 

@@ -124,13 +124,11 @@
 {
     Tweet *tweet = self.tweetsArray[0];
     NSInteger min = tweet.tweetID;
-    NSLog(@"tweet ID %ld",tweet.tweetID);
     for(Tweet *tweet in self.tweetsArray)
     {
         if(min>tweet.tweetID)
         {
             min=tweet.tweetID;
-            NSLog(@"min ID %ld",min);
         }
     }
     
