@@ -54,6 +54,7 @@
         self.retweetNameLabel.text = [NSString stringWithFormat:@"%@ retweeted", self.tweet.retweetUserName];
     }
     
+    NSString *text = [self.tweet.text stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     if ([self.textLabel isKindOfClass:[TTTAttributedLabel class]])
     {
         TTTAttributedLabel *label = (TTTAttributedLabel *)self.textLabel;
@@ -62,8 +63,7 @@
         label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor],
                                   NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle] };
 
-        label.text = self.tweet.text;
-        
+        label.text = text;
     }
     self.nameLabel.text = self.tweet.user.name;
     self.twitterNameLabel.text = [NSString stringWithFormat:@"@ %@", self.tweet.user.screenName];

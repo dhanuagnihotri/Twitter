@@ -10,8 +10,9 @@
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
 #import "TwitterClient.h"
+#import "TTTAttributedLabel.h"
 
-@interface TweetTableViewCell()
+@interface TweetTableViewCell() <TTTAttributedLabelDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *retweetImageView;
 @property (strong, nonatomic) IBOutlet UILabel *retweetNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -44,7 +45,17 @@
 -(void)layoutSubviews
 {
     NSString *text = [self.tweet.text stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    self.tweetLabel.text = text;
+    //self.tweetLabel.text = text;
+    if ([self.tweetLabel isKindOfClass:[TTTAttributedLabel class]])
+    {
+        TTTAttributedLabel *label = (TTTAttributedLabel *)self.tweetLabel;
+        label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+        label.delegate = self;
+        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor],
+                                  NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle] };
+        
+        label.text = text;
+    }
     self.nameLabel.text = self.tweet.user.name;
     self.twitterNameLabel.text = [NSString stringWithFormat:@"@ %@", self.tweet.user.screenName];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.tweet.user.profileImageURL]];
@@ -60,6 +71,11 @@
         self.retweetNameLabel.hidden = NO;
         self.retweetImageView.hidden = NO;
     }
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 - (NSString *)stringFromTimeInterval
