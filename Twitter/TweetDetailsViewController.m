@@ -107,12 +107,23 @@
     {
         NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
         
-        [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
-            [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
-            self.tweet.retweetsCount++;
-            self.tweet.userRetweeted = TRUE;
-            self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
-        }];
+        if(!self.tweet.userRetweeted) //user is retweeting the status
+        {
+            [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
+                [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
+                self.tweet.retweetsCount++;
+                self.tweet.userRetweeted = TRUE;
+            }];
+        }
+        else //unretweet the status
+        {
+            [[TwitterClient sharedInstance] retweetWithID:tweetID completion:^(NSDictionary *result, NSError *error) {
+                [self.retweetButton setImage:[UIImage imageNamed:@"retweet"] forState:UIControlStateNormal];
+                self.tweet.retweetsCount--;
+                self.tweet.userRetweeted = FALSE;
+            }];
+        }
+        self.retweetsLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.retweetsCount];
     }
 }
 
@@ -123,12 +134,24 @@
         NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
         params[@"id"] = tweetID;
     
-        [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
-            self.tweet.favoritesCount++;
-            self.tweet.userFavorited = TRUE;
-            self.favoritesLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.favoritesCount];
-            [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
-        }];
+        if(!self.tweet.userFavorited) //favorite the status
+        {
+            [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+                self.tweet.favoritesCount++;
+                self.tweet.userFavorited = TRUE;
+                [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
+                self.favoritesLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.favoritesCount];
+            }];
+        }
+        else //unfavorite the status
+        {
+            [[TwitterClient sharedInstance] unfavoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+                self.tweet.favoritesCount--;
+                self.tweet.userFavorited = FALSE;
+                [self.favoriteButton setImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
+                self.favoritesLabel.text = [NSString stringWithFormat:@"%ld",self.tweet.favoritesCount];
+            }];
+        }
     }
 }
 @end

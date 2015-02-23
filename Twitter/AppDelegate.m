@@ -29,7 +29,7 @@
     User *user = [User currentUser];
     if(user !=nil)
     {
-      //  NSLog(@"Welcome %@", user.name);
+        NSLog(@"Welcome %@", user.name);
         
         TweetsViewController *vc = [[TweetsViewController alloc] init];
         UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];

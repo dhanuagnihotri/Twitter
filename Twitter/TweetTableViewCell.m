@@ -70,6 +70,18 @@
         self.retweetNameLabel.hidden = NO;
         self.retweetImageView.hidden = NO;
     }
+    
+    if(self.tweet.userRetweeted)
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet_on"] forState:UIControlStateNormal];
+    else
+        [self.retweetButton setImage:[UIImage imageNamed:@"retweet"] forState:UIControlStateNormal];
+
+    if(self.tweet.userFavorited)
+        [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
+    else
+        [self.favoriteButton setImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
+    
+
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
@@ -127,9 +139,22 @@
         NSString *tweetID = [NSString stringWithFormat:@"%ld",self.tweet.tweetID];
         params[@"id"] = tweetID;
         
-        [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
-            NSLog(@"Favorites successful");
-        }];
+        if(!self.tweet.userFavorited) //favorite the status
+        {
+            [[TwitterClient sharedInstance] favoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+                self.tweet.favoritesCount++;
+                self.tweet.userFavorited = TRUE;
+                [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
+            }];
+        }
+        else //unfavorite the status
+        {
+            [[TwitterClient sharedInstance] unfavoriteWithParams:params completion:^(NSDictionary *result, NSError *error) {
+                self.tweet.favoritesCount--;
+                self.tweet.userFavorited = FALSE;
+                [self.favoriteButton setImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
+            }];
+        }
     }
 }
 
