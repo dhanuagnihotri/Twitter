@@ -29,9 +29,7 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
         self.profileImageURL = dictionary[@"profile_image_url"];
-        self.tagline = dictionary[@"description"];
-        self.retweetDictionary = [[NSMutableDictionary alloc]init];
-        
+        self.tagline = dictionary[@"description"];        
     }
     return self;
 }

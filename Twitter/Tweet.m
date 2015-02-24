@@ -62,18 +62,43 @@
 {
     if(self.tweetID)
     {
-//        User *user = [User currentUser];
         self.retweetsCount++;
         self.userRetweeted = TRUE;
         [[TwitterClient sharedInstance] retweetWithID:[NSString stringWithFormat:@"%ld",self.tweetID] completion:^(NSDictionary *result, NSError *error) {
-    //            user.retweetDictionary[tweetID]=result[@"id"];
-            }];
+            NSLog(@" source id %ld retweet ID %@", self.tweetID, result[@"id"]);
+            self.retweetResultID=[result[@"id"] integerValue];
+        }];
     }
 }
 
 -(void)unretweet
 {
-    
+    self.retweetsCount--;
+    self.userRetweeted = FALSE;
+
+    if(self.retweetResultID)
+    {
+        [[TwitterClient sharedInstance] unretweetWithID:[NSString stringWithFormat:@"%ld",self.retweetResultID] completion:^(NSDictionary *result, NSError *error) {
+        }];
+    }
+    else
+    {
+        //we need to get the tweet id from the user timeline
+        [[TwitterClient sharedInstance] userTimelineWithParams:nil completion:^(NSArray *result, NSError *error)
+         {
+             for(NSDictionary *dict in result)
+             {
+                 NSInteger statusID = [[dict valueForKeyPath:@"retweeted_status.id"] integerValue];
+                 if(statusID == self.tweetID)
+                 {
+                     NSInteger tweetID = [dict[@"id"] integerValue];
+                     [[TwitterClient sharedInstance] unretweetWithID:[NSString stringWithFormat:@"%ld",tweetID] completion:^(NSDictionary *result, NSError *error) {
+                     }];
+                     break;
+                 }
+             }
+         }];
+    }
 }
 
 -(void)favorite

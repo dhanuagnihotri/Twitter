@@ -16,6 +16,7 @@
 -(void)loginWithCompletion:(void (^) (User *user, NSError *error))completion;
 -(void)openURL:(NSURL *)url;
 -(void)homeTimelineWithParams:(NSDictionary*)params completion:(void (^)(NSArray *tweets, NSError *error))completion;
+-(void)userTimelineWithParams:(NSDictionary*)params completion:(void (^)(NSArray *result, NSError *error))completion;
 -(void)tweetWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion;
 -(void)favoriteWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion;
 -(void)unfavoriteWithParams:(NSDictionary*)params completion:(void (^)(NSDictionary *result, NSError *error))completion;

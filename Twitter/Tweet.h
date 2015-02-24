@@ -22,6 +22,7 @@
 @property (nonatomic, assign) NSInteger tweetID;
 @property (nonatomic, assign)BOOL userRetweeted;
 @property (nonatomic, assign)BOOL userFavorited;
+@property (nonatomic, assign)NSInteger retweetResultID;
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 +(NSArray *)tweetsWithArray:(NSArray *)array;
