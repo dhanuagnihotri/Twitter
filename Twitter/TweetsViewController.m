@@ -51,8 +51,8 @@
     self.tweetsTableView.dataSource = self;
     self.tweetsTableView.delegate = self;
     
-    //self.tweetsTableView.rowHeight = UITableViewAutomaticDimension;
-    self.tweetsTableView.rowHeight = 120;
+    self.tweetsTableView.rowHeight = UITableViewAutomaticDimension;
+    self.tweetsTableView.estimatedRowHeight = 120;
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
     [self.tweetsTableView insertSubview:self.refreshControl atIndex:0];
@@ -142,6 +142,19 @@
     return self.tweetsArray.count;
 }
 
+// Make the separator line extends all the way to the left
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetTableViewCell"];
@@ -149,13 +162,6 @@
     cell.delegate = self;
     Tweet *tweet = self.tweetsArray[indexPath.row];
     cell.tweet = tweet;
-
-    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)] )
-        cell.preservesSuperviewLayoutMargins = false;
-    if([cell respondsToSelector:@selector(setSeparatorInset:)] )
-        cell.separatorInset = UIEdgeInsetsMake(0, 4, 0, 0);
-    if([cell respondsToSelector:@selector(setLayoutMargins:)] )
-        cell.layoutMargins = UIEdgeInsetsZero;
     
     return cell;
 }

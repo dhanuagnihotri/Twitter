@@ -35,7 +35,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.nameLabel.preferredMaxLayoutWidth =self.nameLabel.frame.size.width;
+    //self.nameLabel.preferredMaxLayoutWidth =self.nameLabel.frame.size.width;
     self.profileImage.layer.cornerRadius = 3;
     self.profileImage.clipsToBounds = YES;
     
@@ -44,17 +44,18 @@
 -(void)layoutSubviews
 {
     NSString *text = [self.tweet.text stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    //self.tweetLabel.text = text;
-    //self.tweetLabel.preferredMaxLayoutWidth = self.tweetLabel.frame.size.width;
-    if ([self.tweetLabel isKindOfClass:[TTTAttributedLabel class]])
-    {
-        TTTAttributedLabel *label = (TTTAttributedLabel *)self.tweetLabel;
-        label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
-        label.delegate = self;
-        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor], };
-        
-        label.text = text;
-    }
+    self.tweetLabel.text = text;
+    self.tweetLabel.preferredMaxLayoutWidth = self.tweetLabel.frame.size.width;
+//    if ([self.tweetLabel isKindOfClass:[TTTAttributedLabel class]])
+//    {
+//        TTTAttributedLabel *label = (TTTAttributedLabel *)self.tweetLabel;
+//        label.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+//        label.delegate = self;
+//        label.linkAttributes = @{ (id)kCTForegroundColorAttributeName: [UIColor blueColor], };
+//        
+//        label.text = text;
+//    }
+
     self.nameLabel.text = self.tweet.user.name;
     self.twitterNameLabel.text = [NSString stringWithFormat:@"@ %@", self.tweet.user.screenName];
     [self.profileImage setImageWithURL:[NSURL URLWithString:self.tweet.user.profileImageURL]];
