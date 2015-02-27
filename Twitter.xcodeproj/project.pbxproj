@@ -28,6 +28,10 @@
 		9592CD261A9562A4001B2C57 /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD241A9562A4001B2C57 /* ComposeViewController.xib */; };
 		9592CD3B1A9E9D72001B2C57 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD391A9E9D72001B2C57 /* MenuViewController.m */; };
 		9592CD3C1A9E9D72001B2C57 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD3A1A9E9D72001B2C57 /* MenuViewController.xib */; };
+		9592CD401A9F8907001B2C57 /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD3E1A9F8907001B2C57 /* MenuTableViewCell.m */; };
+		9592CD411A9F8907001B2C57 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD3F1A9F8907001B2C57 /* MenuTableViewCell.xib */; };
+		9592CD451A9FD31D001B2C57 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD431A9FD31D001B2C57 /* MainViewController.m */; };
+		9592CD461A9FD31D001B2C57 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD441A9FD31D001B2C57 /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +79,12 @@
 		9592CD381A9E9D72001B2C57 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		9592CD391A9E9D72001B2C57 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		9592CD3A1A9E9D72001B2C57 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		9592CD3D1A9F8907001B2C57 /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		9592CD3E1A9F8907001B2C57 /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		9592CD3F1A9F8907001B2C57 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		9592CD421A9FD31D001B2C57 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		9592CD431A9FD31D001B2C57 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		9592CD441A9FD31D001B2C57 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		B6CBD60C8044A317575FDFF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDDD7B781DE16A3D4973735 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC961832517A69AE00139B45 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,16 +199,19 @@
 				95603DAA1A93C15200B7827F /* LoginViewController.xib */,
 				9592CD131A9468B0001B2C57 /* TweetsViewController.h */,
 				9592CD141A9468B0001B2C57 /* TweetsViewController.m */,
+				9592CD151A9468B0001B2C57 /* TweetsViewController.xib */,
 				9592CD381A9E9D72001B2C57 /* MenuViewController.h */,
 				9592CD391A9E9D72001B2C57 /* MenuViewController.m */,
 				9592CD3A1A9E9D72001B2C57 /* MenuViewController.xib */,
-				9592CD151A9468B0001B2C57 /* TweetsViewController.xib */,
 				9592CD1D1A956276001B2C57 /* TweetDetailsViewController.h */,
 				9592CD1E1A956276001B2C57 /* TweetDetailsViewController.m */,
 				9592CD1F1A956276001B2C57 /* TweetDetailsViewController.xib */,
 				9592CD221A9562A4001B2C57 /* ComposeViewController.h */,
 				9592CD231A9562A4001B2C57 /* ComposeViewController.m */,
 				9592CD241A9562A4001B2C57 /* ComposeViewController.xib */,
+				9592CD421A9FD31D001B2C57 /* MainViewController.h */,
+				9592CD431A9FD31D001B2C57 /* MainViewController.m */,
+				9592CD441A9FD31D001B2C57 /* MainViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -209,6 +222,9 @@
 				9592CD181A9550E6001B2C57 /* TweetTableViewCell.h */,
 				9592CD191A9550E6001B2C57 /* TweetTableViewCell.m */,
 				9592CD1A1A9550E6001B2C57 /* TweetTableViewCell.xib */,
+				9592CD3D1A9F8907001B2C57 /* MenuTableViewCell.h */,
+				9592CD3E1A9F8907001B2C57 /* MenuTableViewCell.m */,
+				9592CD3F1A9F8907001B2C57 /* MenuTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -312,12 +328,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9592CD411A9F8907001B2C57 /* MenuTableViewCell.xib in Resources */,
 				9592CD1C1A9550E6001B2C57 /* TweetTableViewCell.xib in Resources */,
 				9592CD171A9468B0001B2C57 /* TweetsViewController.xib in Resources */,
 				95603D931A9300F000B7827F /* LaunchScreen.xib in Resources */,
 				9592CD3C1A9E9D72001B2C57 /* MenuViewController.xib in Resources */,
 				95603D901A9300F000B7827F /* Images.xcassets in Resources */,
 				9592CD261A9562A4001B2C57 /* ComposeViewController.xib in Resources */,
+				9592CD461A9FD31D001B2C57 /* MainViewController.xib in Resources */,
 				95603DAC1A93C15200B7827F /* LoginViewController.xib in Resources */,
 				9592CD211A956276001B2C57 /* TweetDetailsViewController.xib in Resources */,
 			);
@@ -374,12 +392,14 @@
 				95603D881A9300F000B7827F /* AppDelegate.m in Sources */,
 				9592CCDD1A93FAB6001B2C57 /* User.m in Sources */,
 				9592CD251A9562A4001B2C57 /* ComposeViewController.m in Sources */,
+				9592CD451A9FD31D001B2C57 /* MainViewController.m in Sources */,
 				9592CD1B1A9550E6001B2C57 /* TweetTableViewCell.m in Sources */,
 				9592CCDA1A93FAA7001B2C57 /* Tweet.m in Sources */,
 				95603D851A9300F000B7827F /* main.m in Sources */,
 				95603DAB1A93C15200B7827F /* LoginViewController.m in Sources */,
 				9592CD201A956276001B2C57 /* TweetDetailsViewController.m in Sources */,
 				9592CD3B1A9E9D72001B2C57 /* MenuViewController.m in Sources */,
+				9592CD401A9F8907001B2C57 /* MenuTableViewCell.m in Sources */,
 				9592CD161A9468B0001B2C57 /* TweetsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

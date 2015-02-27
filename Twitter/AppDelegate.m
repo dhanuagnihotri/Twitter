@@ -9,9 +9,11 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TweetsViewController.h"
+#import "MenuViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
 #import "Tweet.h"
+#import "MainViewController.h"
 
 @interface AppDelegate ()
 
@@ -29,12 +31,15 @@
     User *user = [User currentUser];
     if(user !=nil)
     {
-        NSLog(@"Welcome %@", user.name);
+//        NSLog(@"Welcome %@", user.name);
         
-        TweetsViewController *vc = [[TweetsViewController alloc] init];
-        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-        
-        self.window.rootViewController = nvc;
+//        TweetsViewController *vc = [[TweetsViewController alloc] init];
+//        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+//        
+//        self.window.rootViewController = nvc;
+        MainViewController *vc = [[MainViewController alloc] init];
+        self.window.rootViewController = vc;
+
     }
     else
     {
