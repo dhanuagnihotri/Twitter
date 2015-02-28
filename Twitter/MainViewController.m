@@ -9,17 +9,22 @@
 #import "MainViewController.h"
 #import "TweetsViewController.h"
 #import "MenuViewController.h"
+#import "ProfileViewController.h"
 
 #define SLIDE_TIMING .25
 #define PANEL_WIDTH 60
 
-@interface MainViewController () <UIGestureRecognizerDelegate>
+@interface MainViewController () <UIGestureRecognizerDelegate, MenuViewControllerDelegate>
 
 @property (nonatomic, strong) MenuViewController *menuViewController;
 @property (nonatomic, strong) UINavigationController *tweetNavigationController;
+@property (nonatomic, strong) UINavigationController *profileNavigationController;
+@property (nonatomic, strong) UIViewController *centralViewController;
 
 @property (nonatomic, assign) BOOL showingMenuPanel;
 @property (nonatomic, assign) BOOL showCenterPanel;
+
+@property (nonatomic, assign) NSInteger menuIndex;
 
 @end
 
@@ -27,21 +32,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.menuIndex = 1; //When starting out show the home timeline
+    
+    TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
+    self.tweetNavigationController = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];
+    
+    ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+    self.profileNavigationController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
+    
     // Do any additional setup after loading the view from its nib.
     [self setupView];
 }
 
 -(void)setupView
 {
+    // remove menu view, and reset variables, if needed
+    if (self.centralViewController != nil)
+    {
+        [self.centralViewController.view removeFromSuperview];
+        self.centralViewController = nil;
+    }
+    
     // setup center view
-    TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
-    self.tweetNavigationController = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];
+    switch(self.menuIndex)
+    {
+        case 0:self.centralViewController = self.profileNavigationController;
+            break;
+        case 1:self.centralViewController = self.tweetNavigationController;
+            break;
+        default:
+            break;
+    }
     
-    [self.view addSubview:self.tweetNavigationController.view];
-    [self addChildViewController:self.tweetNavigationController];
+    [self.view addSubview:self.centralViewController.view];
+    [self addChildViewController:self.centralViewController];
     
-    [self.tweetNavigationController didMoveToParentViewController:self];
-    
+    [self.centralViewController didMoveToParentViewController:self];
+
     [self setupGestures];
 }
 
@@ -51,6 +78,7 @@
     if (self.menuViewController == nil)
     {
         self.menuViewController = [[MenuViewController alloc] init];
+        self.menuViewController.delegate = self;
 
         [self.view addSubview:self.menuViewController.view];
         
@@ -88,16 +116,16 @@
 {
     if (value)
     {
-        [self.tweetNavigationController.view.layer setCornerRadius:4];
-        [self.tweetNavigationController.view.layer setShadowColor:[UIColor blackColor].CGColor];
-        [self.tweetNavigationController.view.layer setShadowOpacity:0.8];
+        [self.centralViewController.view.layer setCornerRadius:4];
+        [self.centralViewController.view.layer setShadowColor:[UIColor blackColor].CGColor];
+        [self.centralViewController.view.layer setShadowOpacity:0.8];
         
     }
     else
     {
-        [self.tweetNavigationController.view.layer setCornerRadius:0.0f];
+        [self.centralViewController.view.layer setCornerRadius:0.0f];
     }
-    [self.tweetNavigationController.view.layer setShadowOffset:CGSizeMake(offset, offset)];
+    [self.centralViewController.view.layer setShadowOffset:CGSizeMake(offset, offset)];
 }
 
 #pragma mark pan gesture methods
@@ -109,7 +137,7 @@
     [panRecognizer setDelegate:self];
     
     //We should be able to pan anywhere from the view
-    [self.tweetNavigationController.view addGestureRecognizer:panRecognizer];
+    [self.centralViewController.view addGestureRecognizer:panRecognizer];
 }
 
 -(void)movePanel:(id)sender
@@ -151,7 +179,7 @@
     if([(UIPanGestureRecognizer*)sender state] == UIGestureRecognizerStateChanged) {
         if(velocity.x > 0 || self.showingMenuPanel)
         {// Are you more than halfway? If so, show the panel when done dragging by setting this value to YES (1).
-        self.showCenterPanel = abs([sender view].center.x - self.tweetNavigationController.view.frame.size.width/2) > self.tweetNavigationController.view.frame.size.width/2;
+        self.showCenterPanel = abs([sender view].center.x - self.centralViewController.view.frame.size.width/2) > self.centralViewController.view.frame.size.width/2;
         
         // Allow dragging only in x-coordinates by only updating the x-coordinate with translation position.
         [sender view].center = CGPointMake([sender view].center.x + translatedPoint.x, [sender view].center.y);
@@ -168,7 +196,7 @@
     
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.tweetNavigationController.view.frame = CGRectMake(self.view.frame.size.width - PANEL_WIDTH, 0, self.view.frame.size.width, self.view.frame.size.height);
+                         self.centralViewController.view.frame = CGRectMake(self.view.frame.size.width - PANEL_WIDTH, 0, self.view.frame.size.width, self.view.frame.size.height);
                      }
                      completion:nil
                      ];
@@ -178,7 +206,7 @@
 {
     [UIView animateWithDuration:SLIDE_TIMING delay:0 options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-                         self.tweetNavigationController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                         self.centralViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
                      }
                      completion:^(BOOL finished) {
                          if (finished) {
@@ -191,6 +219,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma menuviewcontroller delegate
+-(void)indexChanged:(MenuViewController *)controller index:(NSInteger)index
+{
+    self.menuIndex = index;
+    [self setupView];
 }
 
 

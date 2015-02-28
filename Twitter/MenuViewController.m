@@ -75,29 +75,19 @@
     cell.MenuLabel.text = self.menuItems[indexPath.row];
     cell.contentView.backgroundColor = [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] ;
     
-//    cell.delegate = self;
-    
-    return cell;
+   return cell;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    switch(indexPath.row)
-    {
-        case 1:
-        {
-            TweetsViewController *vc = [[TweetsViewController alloc] init];
-            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self presentViewController:nvc animated:YES completion:nil];
-            break;
-        }
-            
-        default:
-            break;
-    }
+    [self.delegate indexChanged:self index:indexPath.row];
+
 }
 
+-(void)IndexChanged:(MenuViewController *)controller index:(NSInteger)index
+{
+}
 
 @end

@@ -1,6 +1,6 @@
 # Twitter redux
 
-Time spent: 30
+Time spent: 30 hours
 
 ### Features
 
@@ -10,8 +10,8 @@ Hamburger menu
 - [X] The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
 
 Profile page
-- [ ] Contains the user header view
-- [ ] Contains a section with the users basic stats: # tweets, # following, # followers
+- [X] Contains the user header view
+- [X] Contains a section with the users basic stats: # tweets, # following, # followers
 - [ ] Optional: Implement the paging view for the user description.
 - [ ] Optional: As the paging view moves, increase the opacity of the background screen. 
 - [ ] Optional: Pulling down the profile page should blur and resize the header image.

@@ -99,9 +99,14 @@
     NSInteger ti = (NSInteger)interval;
     NSInteger seconds = ti % 60;
     NSInteger minutes = (ti / 60) % 60;
-    NSInteger hours = (ti / 3600);
+    NSInteger hours = ti / 3600;
+    NSInteger days = hours / 24;
+    
     NSString *time = nil;
-    if (hours > 0) {
+    if (days > 0) {
+        time = [NSString stringWithFormat:@"%2lid", (long)days];
+    }
+    else if (hours > 0) {
         time = [NSString stringWithFormat:@"%2lihr", (long)hours];
     }
     else if (minutes > 0) {

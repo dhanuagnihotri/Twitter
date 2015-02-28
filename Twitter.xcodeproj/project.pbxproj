@@ -32,6 +32,8 @@
 		9592CD411A9F8907001B2C57 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD3F1A9F8907001B2C57 /* MenuTableViewCell.xib */; };
 		9592CD451A9FD31D001B2C57 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD431A9FD31D001B2C57 /* MainViewController.m */; };
 		9592CD461A9FD31D001B2C57 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD441A9FD31D001B2C57 /* MainViewController.xib */; };
+		9592CD4D1AA15D08001B2C57 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD4B1AA15D08001B2C57 /* ProfileViewController.m */; };
+		9592CD4E1AA15D08001B2C57 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD4C1AA15D08001B2C57 /* ProfileViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,9 @@
 		9592CD421A9FD31D001B2C57 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		9592CD431A9FD31D001B2C57 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		9592CD441A9FD31D001B2C57 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		9592CD4A1AA15D08001B2C57 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		9592CD4B1AA15D08001B2C57 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		9592CD4C1AA15D08001B2C57 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		B6CBD60C8044A317575FDFF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDDD7B781DE16A3D4973735 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC961832517A69AE00139B45 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +217,9 @@
 				9592CD421A9FD31D001B2C57 /* MainViewController.h */,
 				9592CD431A9FD31D001B2C57 /* MainViewController.m */,
 				9592CD441A9FD31D001B2C57 /* MainViewController.xib */,
+				9592CD4A1AA15D08001B2C57 /* ProfileViewController.h */,
+				9592CD4B1AA15D08001B2C57 /* ProfileViewController.m */,
+				9592CD4C1AA15D08001B2C57 /* ProfileViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -333,6 +341,7 @@
 				9592CD171A9468B0001B2C57 /* TweetsViewController.xib in Resources */,
 				95603D931A9300F000B7827F /* LaunchScreen.xib in Resources */,
 				9592CD3C1A9E9D72001B2C57 /* MenuViewController.xib in Resources */,
+				9592CD4E1AA15D08001B2C57 /* ProfileViewController.xib in Resources */,
 				95603D901A9300F000B7827F /* Images.xcassets in Resources */,
 				9592CD261A9562A4001B2C57 /* ComposeViewController.xib in Resources */,
 				9592CD461A9FD31D001B2C57 /* MainViewController.xib in Resources */,
@@ -392,6 +401,7 @@
 				95603D881A9300F000B7827F /* AppDelegate.m in Sources */,
 				9592CCDD1A93FAB6001B2C57 /* User.m in Sources */,
 				9592CD251A9562A4001B2C57 /* ComposeViewController.m in Sources */,
+				9592CD4D1AA15D08001B2C57 /* ProfileViewController.m in Sources */,
 				9592CD451A9FD31D001B2C57 /* MainViewController.m in Sources */,
 				9592CD1B1A9550E6001B2C57 /* TweetTableViewCell.m in Sources */,
 				9592CCDA1A93FAA7001B2C57 /* Tweet.m in Sources */,
