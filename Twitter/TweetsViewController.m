@@ -1,4 +1,4 @@
-//
+    //
 //  TweetsViewController.m
 //  
 //
@@ -13,6 +13,7 @@
 #import "TweetTableViewCell.h"
 #import "TweetDetailsViewController.h"
 #import "ComposeViewController.h"
+#import "ProfileViewController.h"
 #import "SVProgressHUD.h"
 #import "SVPullToRefresh.h"
 
@@ -199,6 +200,18 @@
     
     UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+-(void)imageTapped:(TweetTableViewCell *)cell
+{
+    ProfileViewController  *vc = [[ProfileViewController alloc]init];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
+    params[@"screen_name"] = cell.tweet.user.screenName;
+    [[TwitterClient sharedInstance] userProfileWithParams:params completion:^(User *user, NSError *error) {
+        vc.user=user;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 @end

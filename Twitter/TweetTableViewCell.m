@@ -39,6 +39,14 @@
     self.profileImage.layer.cornerRadius = 3;
     self.profileImage.clipsToBounds = YES;
     
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onImageTap:)];
+    
+    // Optionally set the number of required taps, e.g., 2 for a double click
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    
+    // Attach it to a view of your choice. If it's a UIImageView, remember to enable user interaction
+    [self.profileImage addGestureRecognizer:tapGestureRecognizer];
+    
 }
 
 -(void)layoutSubviews
@@ -127,6 +135,14 @@
     
     [self.delegate tweetCell:self replyButtonClicked:YES];
 }
+
+
+- (void)onImageTap:(UITapGestureRecognizer *)tapGestureRecognizer {
+    NSLog(@"Custom tap was called");
+    [self.delegate imageTapped:self];
+}
+
+
 
 - (IBAction)retweetButtonPressed:(id)sender {
     if(!self.tweet.userRetweeted) //user is retweeting the status

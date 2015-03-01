@@ -14,6 +14,7 @@
 @protocol TweetCellDelegate <NSObject>
 
 -(void)tweetCell:(TweetTableViewCell *)cell replyButtonClicked:(BOOL)state;
+-(void)imageTapped:(TweetTableViewCell *)cell;
 
 @end
 

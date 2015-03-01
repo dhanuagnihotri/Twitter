@@ -39,8 +39,9 @@
                             <constraint firstAttribute="width" constant="19" id="sg6-VA-wc2"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TJf-KW-hGu">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TJf-KW-hGu">
                         <rect key="frame" x="17" y="41" width="48" height="48"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="8Et-6x-dfG"/>
                             <constraint firstAttribute="height" constant="48" id="XbQ-fL-Mhi"/>

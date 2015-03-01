@@ -17,7 +17,7 @@ Profile page
 - [ ] Optional: Pulling down the profile page should blur and resize the header image.
 
 Home Timeline
-- [ ] Tapping on a user image should bring up that user's profile page
+- [X] Tapping on a user image should bring up that user's profile page
 
 Account switching (Optional)
 - [ ] Long press on tab bar to bring up Account view with animation

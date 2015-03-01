@@ -32,13 +32,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.menuIndex = 0; //When starting out show the home timeline
+    self.menuIndex = 1; //When starting out show the home timeline
     
     TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
     self.tweetNavigationController = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];
     
     ProfileViewController *profileViewController = [[ProfileViewController alloc] init];
+    profileViewController.user = [User currentUser];
     self.profileNavigationController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
+    
     
     // Do any additional setup after loading the view from its nib.
     [self setupView];

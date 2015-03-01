@@ -22,8 +22,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *numFollowersLabel;
 @property (strong, nonatomic) IBOutlet UITableView *userTimelineTableView;
 @property(strong, nonatomic) NSMutableArray *tweetsArray;
-@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *screenNameLabel;
 
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) UIPageViewController *pageController;
@@ -34,6 +32,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+    self.navigationController.navigationBar.barTintColor=  [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] /*#77b7ed*/;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.title = self.user.name;
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
+//                                             initWithTitle:@"Sign Out" style: UIBarButtonItemStylePlain
+//                                             target:self action:@selector(logoutClicked:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+//                                              initWithTitle:@"Compose" style: UIBarButtonItemStylePlain
+//                                              target:self action:@selector(composeClicked:)];
+//    
+    
+    
     // Do any additional setup after loading the view from its nib.
     [self.userTimelineTableView registerNib:[UINib nibWithNibName:@"TweetTableViewCell" bundle:nil] forCellReuseIdentifier:@"TweetTableViewCell"];
     
@@ -42,18 +57,16 @@
     self.userTimelineTableView.rowHeight = UITableViewAutomaticDimension;
     self.userTimelineTableView.estimatedRowHeight = 120;
     
-    User *user = [User currentUser];
-    self.numTweetsLabel.text = [NSString stringWithFormat:@"%ld Tweets",user.tweetCount];
-    self.numFollowingLabel.text = [NSString stringWithFormat:@"%ld Following",user.followingCount];
-    self.numFollowersLabel.text = [NSString stringWithFormat:@"%ld Followers",user.followersCount];
+    //User *user = [User currentUser];
+    self.numTweetsLabel.text = [NSString stringWithFormat:@"%ld Tweets",self.user.tweetCount];
+    self.numFollowingLabel.text = [NSString stringWithFormat:@"%ld Following",self.user.followingCount];
+    self.numFollowersLabel.text = [NSString stringWithFormat:@"%ld Followers",self.user.followersCount];
 //    [self.profileImageView setImageWithURL:[NSURL URLWithString:user.profileBackgroundImageURL]];
-//    self.userNameLabel.text = user.name;
-//    self.screenNameLabel.text = [NSString stringWithFormat:@"@%@",user.screenName];
 //    [self.smallProfileImageView setImageWithURL:[NSURL URLWithString:user.profileImageURL]];
  
     self.tweetsArray = [[NSMutableArray alloc] init];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
-    params[@"screen_name"] = user.screenName;
+    params[@"screen_name"] = self.user.screenName;
     [[TwitterClient sharedInstance] userTimelineWithParams:params completion:^(NSArray *tweets, NSError *error) {
         for(Tweet *tweet in tweets)
         {
@@ -77,6 +90,7 @@
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,15 +158,15 @@
     
     PageChildViewController *childViewController = [[PageChildViewController alloc] init];
     childViewController.index = index;
-    childViewController.profileBackgroundImageURL = [[User currentUser] profileBackgroundImageURL];
-    childViewController.profileImageURL = [[User currentUser] profileImageURL];
+    childViewController.profileBackgroundImageURL = self.user.profileBackgroundImageURL;
+    childViewController.profileImageURL = self.user.profileImageURL;
     
     switch (index) {
         case 0:
-            childViewController.text = [[User currentUser] name];
+            childViewController.text = self.user.name;
             break;
         case 1:
-            childViewController.text = [[User currentUser] tagline];
+            childViewController.text = self.user.tagline;
             break;
             
         default:
