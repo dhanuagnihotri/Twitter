@@ -121,10 +121,22 @@
     NSInteger index=sender.currentPage;
     switch (index) {
         case 0:
+        {
+            [UIView animateWithDuration:1 animations:^{
+                self.profileImageView.alpha = 0.5;
+            }];
             self.descriptionLabel.text = self.user.name;
+   
+        }
             break;
         case 1:
+        {
+            [UIView animateWithDuration:1 animations:^{
+                self.profileImageView.alpha = 1.0;
+            }];
             self.descriptionLabel.text = self.user.tagline;
+            
+        }
             break;
             
         default:

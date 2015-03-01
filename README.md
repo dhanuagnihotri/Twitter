@@ -1,6 +1,6 @@
 # Twitter redux
 
-Time spent: 30 hours
+Time spent: 25 hours
 
 ### Features
 
@@ -13,7 +13,7 @@ Profile page
 - [X] Contains the user header view
 - [X] Contains a section with the users basic stats: # tweets, # following, # followers
 - [X] Optional: Implement the paging view for the user description.
-- [ ] Optional: As the paging view moves, increase the opacity of the background screen. 
+- [X] Optional: As the paging view moves, increase the opacity of the background screen. 
 - [ ] Optional: Pulling down the profile page should blur and resize the header image.
 
 Home Timeline
