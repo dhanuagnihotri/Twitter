@@ -97,7 +97,7 @@ NSString * const kTwitterBaseURL = @"https://api.twitter.com";
 -(void)userProfileWithParams:(NSDictionary*)params completion:(void (^)(User *user, NSError *error))completion
 {
     [self GET:@"1.1/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"Response object %@",responseObject);
+       // NSLog(@"Response object %@",responseObject);
         User *user = [[User alloc] initWithDictionary:responseObject];
         completion(user, nil);
 
