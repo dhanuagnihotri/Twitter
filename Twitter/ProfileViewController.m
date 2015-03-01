@@ -10,9 +10,8 @@
 #import "TweetTableViewCell.h"
 #import "TwitterClient.h"
 #import "UIImageView+AFNetworking.h"
-#import "PageChildViewController.h"
 
-@interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate , UIPageViewControllerDataSource>
+@interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate >
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *smallProfileImageView;
@@ -25,6 +24,9 @@
 
 @property (assign, nonatomic) NSInteger index;
 @property (strong, nonatomic) UIPageViewController *pageController;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+- (IBAction)pageControlChanged:(UIPageControl *)sender;
 
 @end
 
@@ -57,12 +59,12 @@
     self.userTimelineTableView.rowHeight = UITableViewAutomaticDimension;
     self.userTimelineTableView.estimatedRowHeight = 120;
     
-    //User *user = [User currentUser];
+    self.descriptionLabel.text = [NSString stringWithFormat:@"%@ @%@",self.user.name, self.user.screenName];
     self.numTweetsLabel.text = [NSString stringWithFormat:@"%ld Tweets",self.user.tweetCount];
     self.numFollowingLabel.text = [NSString stringWithFormat:@"%ld Following",self.user.followingCount];
     self.numFollowersLabel.text = [NSString stringWithFormat:@"%ld Followers",self.user.followersCount];
-//    [self.profileImageView setImageWithURL:[NSURL URLWithString:user.profileBackgroundImageURL]];
-//    [self.smallProfileImageView setImageWithURL:[NSURL URLWithString:user.profileImageURL]];
+    [self.profileImageView setImageWithURL:[NSURL URLWithString:self.user.profileBackgroundImageURL]];
+    [self.smallProfileImageView setImageWithURL:[NSURL URLWithString:self.user.profileImageURL]];
  
     self.tweetsArray = [[NSMutableArray alloc] init];
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:1];
@@ -76,21 +78,8 @@
         [self.userTimelineTableView reloadData];
     }];
     
-        
-    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    
-    self.pageController.dataSource = self;
-    [[self.pageController view] setFrame:CGRectMake(0,52,320,160)];
-   PageChildViewController *initialViewController = [self viewControllerAtIndex:0];
-    
-    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    
-    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    [self addChildViewController:self.pageController];
-    [[self view] addSubview:[self.pageController view]];
-    [self.pageController didMoveToParentViewController:self];
-    
+    self.pageControl.numberOfPages = 2; // Indicate total number of pages
+    self.pageControl.currentPage = 0;  // Indicate which page in default (0 for first page)
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,63 +117,18 @@
     return cell;
 }
 
-#pragma pageviewcontroller delegate methods
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [(PageChildViewController *)viewController index];
-    
-    if (index == 0) {
-        return nil;
-    }
-    
-    index--;
-    
-    return [self viewControllerAtIndex:index];
-    
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    
-    NSUInteger index = [(PageChildViewController *)viewController index];
-    index++;
-    if (index == 2) {
-        return nil;
-    }
-    return [self viewControllerAtIndex:index];
-}
-
-- (PageChildViewController *)viewControllerAtIndex:(NSUInteger)index {
-    
-    PageChildViewController *childViewController = [[PageChildViewController alloc] init];
-    childViewController.index = index;
-    childViewController.profileBackgroundImageURL = self.user.profileBackgroundImageURL;
-    childViewController.profileImageURL = self.user.profileImageURL;
-    
+- (IBAction)pageControlChanged:(UIPageControl *)sender {
+    NSInteger index=sender.currentPage;
     switch (index) {
         case 0:
-            childViewController.text = self.user.name;
+            self.descriptionLabel.text = self.user.name;
             break;
         case 1:
-            childViewController.text = self.user.tagline;
+            self.descriptionLabel.text = self.user.tagline;
             break;
             
         default:
             break;
     }
-    
-    return childViewController;
-    
 }
-
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    // The number of items reflected in the page indicator.
-    return 2;
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    // The selected item reflected in the page indicator.
-    return 0;
-}
-
 @end

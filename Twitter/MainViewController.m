@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.menuIndex = 1; //When starting out show the home timeline
+    self.menuIndex = 0; //When starting out show the home timeline
     
     TweetsViewController *tweetsViewController = [[TweetsViewController alloc] init];
     self.tweetNavigationController = [[UINavigationController alloc] initWithRootViewController:tweetsViewController];

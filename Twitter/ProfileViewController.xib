@@ -6,10 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController">
             <connections>
+                <outlet property="descriptionLabel" destination="bDq-MV-ZJR" id="HfG-QY-z57"/>
                 <outlet property="numFollowersLabel" destination="o1d-Pt-NJy" id="duu-fB-Giz"/>
                 <outlet property="numFollowingLabel" destination="CRT-Ym-LAx" id="fdZ-LY-yol"/>
                 <outlet property="numTweetsLabel" destination="oAb-I5-Wie" id="uuw-Gt-JKC"/>
+                <outlet property="pageControl" destination="J1Q-NR-I9q" id="uVO-vf-erE"/>
                 <outlet property="profileImageView" destination="rmP-qh-a0H" id="EFc-pA-0Kc"/>
+                <outlet property="smallProfileImageView" destination="MJS-KH-e3u" id="sms-IZ-DYE"/>
                 <outlet property="userTimelineTableView" destination="cbG-tk-1zn" id="Ew3-w4-0kl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,9 +23,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rmP-qh-a0H">
-                    <rect key="frame" x="0.0" y="52" width="320" height="146"/>
+                    <rect key="frame" x="0.0" y="52" width="320" height="106"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="146" id="OOA-S6-rzu"/>
+                        <constraint firstAttribute="height" constant="106" id="OOA-S6-rzu"/>
                         <constraint firstAttribute="width" constant="320" id="zOG-hZ-HKB"/>
                     </constraints>
                 </imageView>
@@ -94,6 +97,21 @@
                     <rect key="frame" x="0.0" y="301" width="320" height="267"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJS-KH-e3u">
+                    <rect key="frame" x="7" y="127" width="48" height="48"/>
+                </imageView>
+                <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="J1Q-NR-I9q">
+                    <rect key="frame" x="140" y="121" width="39" height="37"/>
+                    <connections>
+                        <action selector="pageControlChanged:" destination="-1" eventType="valueChanged" id="iPS-DR-xCm"/>
+                    </connections>
+                </pageControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDq-MV-ZJR">
+                    <rect key="frame" x="13" y="183" width="299" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -113,14 +131,14 @@
                 <constraint firstItem="cbG-tk-1zn" firstAttribute="top" secondItem="u9T-XZ-mMg" secondAttribute="bottom" id="W8l-ln-50h"/>
                 <constraint firstItem="JBL-S6-7YO" firstAttribute="centerY" secondItem="5s6-0p-Jh1" secondAttribute="centerY" id="azj-DP-4pr"/>
                 <constraint firstAttribute="centerX" secondItem="CRT-Ym-LAx" secondAttribute="centerX" id="bDv-aI-EGY"/>
-                <constraint firstItem="oAb-I5-Wie" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="8" id="bhQ-gy-86u"/>
+                <constraint firstItem="oAb-I5-Wie" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="48" id="bhQ-gy-86u"/>
                 <constraint firstAttribute="trailing" secondItem="u9T-XZ-mMg" secondAttribute="trailing" id="d2b-5F-K63"/>
-                <constraint firstItem="DIS-jV-JDv" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="51" id="dNk-g9-e2z"/>
+                <constraint firstItem="DIS-jV-JDv" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="91" id="dNk-g9-e2z"/>
                 <constraint firstItem="rmP-qh-a0H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="52" id="dpR-u9-4md"/>
                 <constraint firstItem="u9T-XZ-mMg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fcd-sX-5bl"/>
                 <constraint firstItem="DIS-jV-JDv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gIx-YT-CiK"/>
-                <constraint firstItem="o1d-Pt-NJy" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="8" id="tDy-u5-iqP"/>
-                <constraint firstItem="CRT-Ym-LAx" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="8" id="zCl-pg-nnz"/>
+                <constraint firstItem="o1d-Pt-NJy" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="48" id="tDy-u5-iqP"/>
+                <constraint firstItem="CRT-Ym-LAx" firstAttribute="top" secondItem="rmP-qh-a0H" secondAttribute="bottom" constant="48" id="zCl-pg-nnz"/>
             </constraints>
             <point key="canvasLocation" x="240" y="365"/>
         </view>
