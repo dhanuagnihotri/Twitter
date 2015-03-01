@@ -91,8 +91,6 @@
         [self.favoriteButton setImage:[UIImage imageNamed:@"favorite_on"] forState:UIControlStateNormal];
     else
         [self.favoriteButton setImage:[UIImage imageNamed:@"favorite"] forState:UIControlStateNormal];
-    
-
 }
 
 - (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
@@ -136,9 +134,7 @@
     [self.delegate tweetCell:self replyButtonClicked:YES];
 }
 
-
 - (void)onImageTap:(UITapGestureRecognizer *)tapGestureRecognizer {
-    NSLog(@"Custom tap was called");
     [self.delegate imageTapped:self];
 }
 

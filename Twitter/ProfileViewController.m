@@ -10,6 +10,7 @@
 #import "TweetTableViewCell.h"
 #import "TwitterClient.h"
 #import "UIImageView+AFNetworking.h"
+#import "LoginViewController.h"
 
 @interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate >
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -28,6 +29,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 - (IBAction)pageControlChanged:(UIPageControl *)sender;
 
+@property (strong, nonatomic) UILongPressGestureRecognizer *longPressGesture;
+
 @end
 
 @implementation ProfileViewController
@@ -35,13 +38,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
     self.navigationController.navigationBar.barTintColor=  [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] /*#77b7ed*/;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.title = self.user.name;
+    self.longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGestures:)];
+    self.longPressGesture.minimumPressDuration = 2.0f;
+    [self.navigationController.view addGestureRecognizer:self.longPressGesture];
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
 //                                             initWithTitle:@"Sign Out" style: UIBarButtonItemStylePlain
 //                                             target:self action:@selector(logoutClicked:)];
@@ -59,6 +63,7 @@
     self.userTimelineTableView.rowHeight = UITableViewAutomaticDimension;
     self.userTimelineTableView.estimatedRowHeight = 120;
     
+    self.descriptionLabel.preferredMaxLayoutWidth = self.descriptionLabel.frame.size.width;
     self.descriptionLabel.text = [NSString stringWithFormat:@"%@ @%@",self.user.name, self.user.screenName];
     self.numTweetsLabel.text = [NSString stringWithFormat:@"%ld Tweets",self.user.tweetCount];
     self.numFollowingLabel.text = [NSString stringWithFormat:@"%ld Following",self.user.followingCount];
@@ -125,7 +130,7 @@
             [UIView animateWithDuration:1 animations:^{
                 self.profileImageView.alpha = 0.5;
             }];
-            self.descriptionLabel.text = self.user.name;
+            self.descriptionLabel.text = [NSString stringWithFormat:@"%@ @%@",self.user.name, self.user.screenName];;
    
         }
             break;
@@ -143,4 +148,14 @@
             break;
     }
 }
+- (void)handleLongPressGestures:(UILongPressGestureRecognizer *)sender {
+     if (sender.state != UIGestureRecognizerStateBegan )
+     {
+         NSLog(@"Long Pressed Occured");
+         LoginViewController  *vc = [[LoginViewController alloc]init];
+         
+         [self presentViewController:vc animated:YES completion:nil];
+     }
+}
+
 @end
