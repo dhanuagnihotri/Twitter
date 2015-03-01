@@ -23,6 +23,7 @@ extern NSString * const UserDidLogoutNotification ;
 @property (nonatomic, assign) NSInteger followersCount;
 
 
+
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 
 +(User *)currentUser;

@@ -34,6 +34,8 @@
 		9592CD461A9FD31D001B2C57 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD441A9FD31D001B2C57 /* MainViewController.xib */; };
 		9592CD4D1AA15D08001B2C57 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD4B1AA15D08001B2C57 /* ProfileViewController.m */; };
 		9592CD4E1AA15D08001B2C57 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD4C1AA15D08001B2C57 /* ProfileViewController.xib */; };
+		9592CD521AA297B7001B2C57 /* PageChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD501AA297B7001B2C57 /* PageChildViewController.m */; };
+		9592CD531AA297B7001B2C57 /* PageChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD511AA297B7001B2C57 /* PageChildViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,9 @@
 		9592CD4A1AA15D08001B2C57 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		9592CD4B1AA15D08001B2C57 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		9592CD4C1AA15D08001B2C57 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		9592CD4F1AA297B7001B2C57 /* PageChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageChildViewController.h; sourceTree = "<group>"; };
+		9592CD501AA297B7001B2C57 /* PageChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageChildViewController.m; sourceTree = "<group>"; };
+		9592CD511AA297B7001B2C57 /* PageChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageChildViewController.xib; sourceTree = "<group>"; };
 		B6CBD60C8044A317575FDFF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDDD7B781DE16A3D4973735 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC961832517A69AE00139B45 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +225,9 @@
 				9592CD4A1AA15D08001B2C57 /* ProfileViewController.h */,
 				9592CD4B1AA15D08001B2C57 /* ProfileViewController.m */,
 				9592CD4C1AA15D08001B2C57 /* ProfileViewController.xib */,
+				9592CD4F1AA297B7001B2C57 /* PageChildViewController.h */,
+				9592CD501AA297B7001B2C57 /* PageChildViewController.m */,
+				9592CD511AA297B7001B2C57 /* PageChildViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -344,6 +352,7 @@
 				9592CD4E1AA15D08001B2C57 /* ProfileViewController.xib in Resources */,
 				95603D901A9300F000B7827F /* Images.xcassets in Resources */,
 				9592CD261A9562A4001B2C57 /* ComposeViewController.xib in Resources */,
+				9592CD531AA297B7001B2C57 /* PageChildViewController.xib in Resources */,
 				9592CD461A9FD31D001B2C57 /* MainViewController.xib in Resources */,
 				95603DAC1A93C15200B7827F /* LoginViewController.xib in Resources */,
 				9592CD211A956276001B2C57 /* TweetDetailsViewController.xib in Resources */,
@@ -411,6 +420,7 @@
 				9592CD3B1A9E9D72001B2C57 /* MenuViewController.m in Sources */,
 				9592CD401A9F8907001B2C57 /* MenuTableViewCell.m in Sources */,
 				9592CD161A9468B0001B2C57 /* TweetsViewController.m in Sources */,
+				9592CD521AA297B7001B2C57 /* PageChildViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

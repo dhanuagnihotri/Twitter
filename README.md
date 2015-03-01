@@ -12,7 +12,7 @@ Hamburger menu
 Profile page
 - [X] Contains the user header view
 - [X] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Optional: Implement the paging view for the user description.
+- [X] Optional: Implement the paging view for the user description.
 - [ ] Optional: As the paging view moves, increase the opacity of the background screen. 
 - [ ] Optional: Pulling down the profile page should blur and resize the header image.
 
