@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
+
+@class LoginViewController;
+
+@protocol LoginViewControllerDelegate <NSObject>
+
+-(void)switchAccount:(LoginViewController *)controller user:(User *)user;
+
+@end
 
 @interface LoginViewController : UIViewController
 
+@property (nonatomic,weak) id<LoginViewControllerDelegate> delegate;
+
 @end
+

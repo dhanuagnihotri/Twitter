@@ -10,16 +10,18 @@
 #import "TweetsViewController.h"
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
+#import "LoginViewController.h"
 
 #define SLIDE_TIMING .25
 #define PANEL_WIDTH 60
 
-@interface MainViewController () <UIGestureRecognizerDelegate, MenuViewControllerDelegate>
+@interface MainViewController () <UIGestureRecognizerDelegate, MenuViewControllerDelegate, LoginViewControllerDelegate>
 
 @property (nonatomic, strong) MenuViewController *menuViewController;
 @property (nonatomic, strong) UINavigationController *tweetNavigationController;
 @property (nonatomic, strong) UINavigationController *profileNavigationController;
 @property (nonatomic, strong) UIViewController *centralViewController;
+@property (nonatomic, strong) LoginViewController *loginViewController;
 
 @property (nonatomic, assign) BOOL showingMenuPanel;
 @property (nonatomic, assign) BOOL showCenterPanel;
@@ -41,6 +43,8 @@
     profileViewController.user = [User currentUser];
     self.profileNavigationController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
     
+    self.loginViewController = [[LoginViewController alloc] init];
+    self.loginViewController.delegate = self;
     
     // Do any additional setup after loading the view from its nib.
     [self setupView];
@@ -61,6 +65,8 @@
         case 0:self.centralViewController = self.profileNavigationController;
             break;
         case 1:self.centralViewController = self.tweetNavigationController;
+            break;
+        case 3:self.centralViewController = self.loginViewController;
             break;
         default:
             break;
@@ -230,5 +236,10 @@
     [self setupView];
 }
 
+#pragma loginviewcontroller delegate
+-(void)switchAccount:(LoginViewController *)controller user:(User *)user
+{
+    NSLog(@"Switch account was called");
+}
 
 @end

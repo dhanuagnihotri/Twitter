@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "TweetsViewController.h"
 #import "TwitterClient.h"
+#import "MainViewController.h"
 
 @interface LoginViewController ()
 - (IBAction)loginPressed:(id)sender;
@@ -33,11 +34,13 @@
         {
             //Modally present tweets view
             [User currentUser];
-            
-            TweetsViewController *vc = [[TweetsViewController alloc] init];
-            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self presentViewController:nvc animated:YES completion:nil];
-            
+//            
+//            TweetsViewController *vc = [[TweetsViewController alloc] init];
+//            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+//            [self presentViewController:nvc animated:YES completion:nil];
+//            
+            MainViewController *vc = [[MainViewController alloc] init];
+            [self presentViewController:vc animated:YES completion:nil];
         }
         else
         {
