@@ -1,6 +1,6 @@
 # Twitter redux
 
-Time spent: 25 hours
+Time spent: 30 hours
 
 ### Features
 
