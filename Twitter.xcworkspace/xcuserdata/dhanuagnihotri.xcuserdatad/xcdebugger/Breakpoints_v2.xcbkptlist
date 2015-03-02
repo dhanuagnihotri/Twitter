@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twitter/LoginViewController.m"
-            timestampString = "446966674.048263"
+            timestampString = "446970831.495037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262">
+            startingLineNumber = "256"
+            endingLineNumber = "256">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twitter/LoginViewController.m"
-            timestampString = "446966674.048263"
+            timestampString = "446970831.495037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274">
+            startingLineNumber = "268"
+            endingLineNumber = "268">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -70,11 +70,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Twitter/LoginViewController.m"
-            timestampString = "446966674.048263"
+            timestampString = "446970831.495037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191">
+            startingLineNumber = "185"
+            endingLineNumber = "185">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -97,13 +97,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Twitter/LoginViewController.m"
-            timestampString = "446966674.048263"
+            filePath = "Twitter/AccountTableViewCell.m"
+            timestampString = "446969016.414174"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-addUser:"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-handlePanning:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twitter/LoginViewController.m"
+            timestampString = "446970831.495037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-deleteUser:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Twitter/LoginViewController.m"
+            timestampString = "446970683.989411"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-removeUser:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

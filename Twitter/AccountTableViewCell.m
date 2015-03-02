@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
-- (IBAction)panGestureOccured:(UIPanGestureRecognizer *)sender;
 
 @end
 
@@ -36,12 +35,27 @@
 -(void)layoutSubviews
 {
     self.nameLabel.text = self.name;
-    self.screenNameLabel.text = self.screenName;
+    self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", self.screenName];
     [self.profileImageView setImageWithURL:[NSURL URLWithString:self.profileImageURL]];
+    
+    UIPanGestureRecognizer *panning = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePanning:)];
+    panning.minimumNumberOfTouches = 1;
+    panning.maximumNumberOfTouches = 1;
+    [self.contentView addGestureRecognizer:panning];
 
 }
-- (IBAction)panGestureOccured:(UIPanGestureRecognizer *)sender {
-//    [self.delegate deleteUser:self];
-}
 
+- (void)handlePanning:(UIPanGestureRecognizer *)panGestureRecognizer{
+    
+    //delete if pan is in the right direction
+    if(panGestureRecognizer.state ==UIGestureRecognizerStateEnded)
+    {
+        CGPoint velocity = [panGestureRecognizer velocityInView:self.contentView];
+        if(velocity.x > 0) //moving to the right
+        {
+            NSLog(@"delete user account");
+            [self.delegate deleteUser:self];
+        }
+    }
+}
 @end

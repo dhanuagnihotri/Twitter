@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 
 
-//@class AccountTableViewCell;
-//
-//@protocol AccountCellDelegate <NSObject>
-//
-//-(void)deleteUser:(AccountTableViewCell *)cell;
-//
-//@end
+@class AccountTableViewCell;
+
+@protocol AccountCellDelegate <NSObject>
+
+-(void)deleteUser:(AccountTableViewCell *)cell;
+
+@end
 
 @interface AccountTableViewCell : UITableViewCell
 
 @property (strong,nonatomic) NSString *name;
 @property (strong,nonatomic) NSString *screenName;
 @property (strong,nonatomic) NSString *profileImageURL;
-//@property (nonatomic,weak) id<AccountCellDelegate> delegate;
+@property (nonatomic,weak) id<AccountCellDelegate> delegate;
 
 @end
 

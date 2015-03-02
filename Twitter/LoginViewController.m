@@ -12,7 +12,7 @@
 #import "MainViewController.h"
 #import "AccountTableViewCell.h"
 
-@interface LoginViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface LoginViewController () <UITableViewDataSource, UITableViewDelegate, AccountCellDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *accountsTableView;
 @property (strong,nonatomic) NSMutableArray *accounts;
@@ -31,7 +31,8 @@ NSString *const kAccountsKey = @"kAccountsKey";
     self.accountsTableView.dataSource = self;
     self.accountsTableView.rowHeight = 100;
     self.accountsTableView.backgroundColor = [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] ;
-    
+    self.accountsTableView.allowsMultipleSelectionDuringEditing = NO;
+
     [self.accountsTableView registerNib:[UINib nibWithNibName:@"AccountTableViewCell" bundle:nil] forCellReuseIdentifier:@"AccountTableViewCell"];
 
     self.accounts = [[NSMutableArray alloc]init];
@@ -78,9 +79,9 @@ NSString *const kAccountsKey = @"kAccountsKey";
     {
         AccountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AccountTableViewCell"];
         cell.name = self.accounts[indexPath.row][@"name"];
-        cell.screenName = [NSString stringWithFormat:@"@%@", self.accounts[indexPath.row][@"screen_name"]];
+        cell.screenName = self.accounts[indexPath.row][@"screen_name"];
         cell.profileImageURL = self.accounts[indexPath.row][@"profile_image_url"];
- //       cell.delegate = self;
+        cell.delegate = self;
         return cell;
     }
     else
@@ -116,33 +117,6 @@ NSString *const kAccountsKey = @"kAccountsKey";
     }];
 }
 
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return YES;
-//}
-//
-//- (UITableViewCellEditingStyle)tableView:(UITableView *)theTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return UITableViewCellEditingStyleDelete;
-//}
-//
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSLog(@"Tableview edit got called");
-////    if (editingStyle == UITableViewCellEditingStyleDelete) {
-////    
-////        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-////        
-////        // Remove the row from data model
-////        if (indexPath.row <self.accounts.count) {
-////            [self.accounts removeObjectAtIndex:indexPath.row];
-////        }
-////        
-////        // Request table view to reload
-////        [tableView reloadData];
-////    }
-////    
-//}
-
 -(void)addUser:(User *)user
 {
     [self.accounts addObject:user.dictionary];
@@ -156,17 +130,37 @@ NSString *const kAccountsKey = @"kAccountsKey";
 
 -(void)removeUser:(User *)user
 {
+    
     [self.accounts removeObject:user.dictionary];
     [self.defaults removeObjectForKey:kAccountsKey];
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:self.accounts options:0 error:NULL];
     [self.defaults setObject:data forKey:kAccountsKey];
     [self.defaults synchronize];
+    
+    [self.accountsTableView reloadData];
+    
 }
 
 -(void)deleteUser:(AccountTableViewCell *)cell
 {
-    NSLog(@"delete user got called");
+    if(cell.screenName !=nil)
+    {
+        NSLog(@"delete user %@", cell.screenName);
+        for(NSDictionary *dict in self.accounts)
+        {
+            if([dict[@"screen_name"] isEqualToString:cell.screenName])
+            {
+                User *user = [[User alloc]initWithDictionary:dict];
+                [self removeUser:user];
+                
+                if([user.screenName isEqualToString:[User currentUser].screenName])
+                {
+                    [User logout];
+                }
+            }
+        }
+    }
 }
 
 @end

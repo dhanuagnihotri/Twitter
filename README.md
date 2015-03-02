@@ -23,7 +23,7 @@ Account switching (Optional)
 - [X] Long press on tab bar to bring up Account view with animation
 - [ ] Tap account to switch to
 - [X] Include a plus button to Add an Account
-- [ ] Swipe to delete an account
+- [X] Swipe to delete an account
 
 ### Walkthrough
 
