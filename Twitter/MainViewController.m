@@ -11,6 +11,7 @@
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
 #import "LoginViewController.h"
+#import "MentionsViewController.h"
 
 #define SLIDE_TIMING .25
 #define PANEL_WIDTH 60
@@ -19,6 +20,7 @@
 
 @property (nonatomic, strong) MenuViewController *menuViewController;
 @property (nonatomic, strong) UINavigationController *tweetNavigationController;
+@property (nonatomic, strong) UINavigationController *mentionsNavigationController;
 @property (nonatomic, strong) UINavigationController *profileNavigationController;
 @property (nonatomic, strong) UIViewController *centralViewController;
 @property (nonatomic, strong) LoginViewController *loginViewController;
@@ -43,6 +45,9 @@
     profileViewController.user = [User currentUser];
     self.profileNavigationController = [[UINavigationController alloc] initWithRootViewController:profileViewController];
     
+    MentionsViewController *mentionsViewController = [[MentionsViewController alloc] init];
+    self.mentionsNavigationController = [[UINavigationController alloc] initWithRootViewController:mentionsViewController];
+
     self.loginViewController = [[LoginViewController alloc] init];
     self.loginViewController.delegate = self;
     
@@ -65,6 +70,8 @@
         case 0:self.centralViewController = self.profileNavigationController;
             break;
         case 1:self.centralViewController = self.tweetNavigationController;
+            break;
+        case 2:self.centralViewController = self.mentionsNavigationController;
             break;
         case 3:self.centralViewController = self.loginViewController;
             break;

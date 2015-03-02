@@ -36,6 +36,8 @@
 		9592CD4E1AA15D08001B2C57 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD4C1AA15D08001B2C57 /* ProfileViewController.xib */; };
 		9592CD611AA40CCF001B2C57 /* AccountTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD5F1AA40CCF001B2C57 /* AccountTableViewCell.m */; };
 		9592CD621AA40CCF001B2C57 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD601AA40CCF001B2C57 /* AccountTableViewCell.xib */; };
+		9592CD661AA410EF001B2C57 /* MentionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9592CD641AA410EF001B2C57 /* MentionsViewController.m */; };
+		9592CD671AA410EF001B2C57 /* MentionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9592CD651AA410EF001B2C57 /* MentionsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,9 @@
 		9592CD5E1AA40CCF001B2C57 /* AccountTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTableViewCell.h; sourceTree = "<group>"; };
 		9592CD5F1AA40CCF001B2C57 /* AccountTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewCell.m; sourceTree = "<group>"; };
 		9592CD601AA40CCF001B2C57 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
+		9592CD631AA410EF001B2C57 /* MentionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionsViewController.h; sourceTree = "<group>"; };
+		9592CD641AA410EF001B2C57 /* MentionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionsViewController.m; sourceTree = "<group>"; };
+		9592CD651AA410EF001B2C57 /* MentionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MentionsViewController.xib; sourceTree = "<group>"; };
 		B6CBD60C8044A317575FDFF1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDDD7B781DE16A3D4973735 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC961832517A69AE00139B45 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +212,9 @@
 				95603DA81A93C15200B7827F /* LoginViewController.h */,
 				95603DA91A93C15200B7827F /* LoginViewController.m */,
 				95603DAA1A93C15200B7827F /* LoginViewController.xib */,
+				9592CD631AA410EF001B2C57 /* MentionsViewController.h */,
+				9592CD641AA410EF001B2C57 /* MentionsViewController.m */,
+				9592CD651AA410EF001B2C57 /* MentionsViewController.xib */,
 				9592CD131A9468B0001B2C57 /* TweetsViewController.h */,
 				9592CD141A9468B0001B2C57 /* TweetsViewController.m */,
 				9592CD151A9468B0001B2C57 /* TweetsViewController.xib */,
@@ -351,6 +359,7 @@
 				95603D931A9300F000B7827F /* LaunchScreen.xib in Resources */,
 				9592CD3C1A9E9D72001B2C57 /* MenuViewController.xib in Resources */,
 				9592CD4E1AA15D08001B2C57 /* ProfileViewController.xib in Resources */,
+				9592CD671AA410EF001B2C57 /* MentionsViewController.xib in Resources */,
 				95603D901A9300F000B7827F /* Images.xcassets in Resources */,
 				9592CD261A9562A4001B2C57 /* ComposeViewController.xib in Resources */,
 				9592CD461A9FD31D001B2C57 /* MainViewController.xib in Resources */,
@@ -421,6 +430,7 @@
 				9592CD3B1A9E9D72001B2C57 /* MenuViewController.m in Sources */,
 				9592CD401A9F8907001B2C57 /* MenuTableViewCell.m in Sources */,
 				9592CD161A9468B0001B2C57 /* TweetsViewController.m in Sources */,
+				9592CD661AA410EF001B2C57 /* MentionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
