@@ -80,6 +80,7 @@ NSString *const kAccountsKey = @"kAccountsKey";
         cell.name = self.accounts[indexPath.row][@"name"];
         cell.screenName = [NSString stringWithFormat:@"@%@", self.accounts[indexPath.row][@"screen_name"]];
         cell.profileImageURL = self.accounts[indexPath.row][@"profile_image_url"];
+ //       cell.delegate = self;
         return cell;
     }
     else
@@ -115,6 +116,33 @@ NSString *const kAccountsKey = @"kAccountsKey";
     }];
 }
 
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
+//
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)theTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return UITableViewCellEditingStyleDelete;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"Tableview edit got called");
+////    if (editingStyle == UITableViewCellEditingStyleDelete) {
+////    
+////        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+////        
+////        // Remove the row from data model
+////        if (indexPath.row <self.accounts.count) {
+////            [self.accounts removeObjectAtIndex:indexPath.row];
+////        }
+////        
+////        // Request table view to reload
+////        [tableView reloadData];
+////    }
+////    
+//}
+
 -(void)addUser:(User *)user
 {
     [self.accounts addObject:user.dictionary];
@@ -126,7 +154,7 @@ NSString *const kAccountsKey = @"kAccountsKey";
 
 }
 
--(void)deleteUser:(User *)user
+-(void)removeUser:(User *)user
 {
     [self.accounts removeObject:user.dictionary];
     [self.defaults removeObjectForKey:kAccountsKey];
@@ -134,6 +162,11 @@ NSString *const kAccountsKey = @"kAccountsKey";
     NSData *data = [NSJSONSerialization dataWithJSONObject:self.accounts options:0 error:NULL];
     [self.defaults setObject:data forKey:kAccountsKey];
     [self.defaults synchronize];
+}
+
+-(void)deleteUser:(AccountTableViewCell *)cell
+{
+    NSLog(@"delete user got called");
 }
 
 @end

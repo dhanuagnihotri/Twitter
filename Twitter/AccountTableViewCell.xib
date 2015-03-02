@@ -47,6 +47,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="Mvm-w4-vZu" secondAttribute="bottom" constant="17.5" id="yE4-Mf-0WJ"/>
                 </constraints>
             </tableViewCellContentView>
+            <gestureRecognizers/>
             <connections>
                 <outlet property="nameLabel" destination="17g-f8-3ni" id="cE5-JL-wXI"/>
                 <outlet property="profileImageView" destination="9Ky-7Z-rZ6" id="I9b-f8-u68"/>

@@ -10,9 +10,11 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface AccountTableViewCell ()
+
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+- (IBAction)panGestureOccured:(UIPanGestureRecognizer *)sender;
 
 @end
 
@@ -20,7 +22,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-     self.backgroundColor = [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] ;
+    self.backgroundColor = [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] ;
     self.profileImageView.layer.cornerRadius = 3;
     self.profileImageView.clipsToBounds = YES;
 }
@@ -38,4 +40,8 @@
     [self.profileImageView setImageWithURL:[NSURL URLWithString:self.profileImageURL]];
 
 }
+- (IBAction)panGestureOccured:(UIPanGestureRecognizer *)sender {
+//    [self.delegate deleteUser:self];
+}
+
 @end

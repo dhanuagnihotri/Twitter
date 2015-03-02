@@ -25,6 +25,9 @@ Account switching (Optional)
 - [X] Include a plus button to Add an Account
 - [ ] Swipe to delete an account
 
+### Walkthrough
+
+![Video Walkthrough](twitter_redux.gif)
 
 # Twitter
 This is a basic twitter app to read and compose tweets using the [Twitter API](https://apps.twitter.com/).
