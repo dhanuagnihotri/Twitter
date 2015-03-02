@@ -10,14 +10,18 @@
 #import "TweetsViewController.h"
 #import "TwitterClient.h"
 #import "MainViewController.h"
+#import "AccountTableViewCell.h"
 
 @interface LoginViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *accountsTableView;
+@property (strong,nonatomic) NSMutableArray *accounts;
+@property (strong,nonatomic) NSUserDefaults *defaults;
 
 @end
 
 @implementation LoginViewController
+NSString *const kAccountsKey = @"kAccountsKey";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,7 +31,20 @@
     self.accountsTableView.dataSource = self;
     self.accountsTableView.rowHeight = 100;
     self.accountsTableView.backgroundColor = [UIColor colorWithRed:0.467 green:0.718 blue:0.929 alpha:1] ;
+    
+    [self.accountsTableView registerNib:[UINib nibWithNibName:@"AccountTableViewCell" bundle:nil] forCellReuseIdentifier:@"AccountTableViewCell"];
 
+    self.accounts = [[NSMutableArray alloc]init];
+    self.defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData *data = [self.defaults objectForKey:kAccountsKey];
+    if(data != nil)
+    {
+        NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+        
+        for(NSDictionary *dict in array)
+            [self.accounts addObject:dict];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +56,7 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return self.accounts.count + 1;
 }
 
 // Make the separator line extends all the way to the left
@@ -57,15 +74,24 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    TweetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetTableViewCell"];
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
-    cell.textLabel.text = @"+";
-    cell.backgroundColor = [UIColor grayColor];
-//    cell.delegate = self;
-//    Tweet *tweet = self.tweetsArray[indexPath.row];
-//    cell.tweet = tweet;
-    
-    return cell;
+    if(indexPath.row < self.accounts.count)
+    {
+        AccountTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AccountTableViewCell"];
+        cell.name = self.accounts[indexPath.row][@"name"];
+        cell.screenName = [NSString stringWithFormat:@"@%@", self.accounts[indexPath.row][@"screen_name"]];
+        cell.profileImageURL = self.accounts[indexPath.row][@"profile_image_url"];
+        return cell;
+    }
+    else
+    {
+        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        cell.textLabel.text = @"+";
+        cell.backgroundColor = [UIColor grayColor];
+        return cell;
+
+    }
+
+    return nil;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,6 +103,7 @@
         {
             //Modally present tweets view
             [User currentUser];
+            [self addUser:user];
             
             MainViewController *vc = [[MainViewController alloc] init];
             [self presentViewController:vc animated:YES completion:nil];
@@ -86,6 +113,27 @@
             //present error view
         }
     }];
+}
+
+-(void)addUser:(User *)user
+{
+    [self.accounts addObject:user.dictionary];
+    [self.defaults removeObjectForKey:kAccountsKey];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self.accounts options:0 error:NULL];
+    [self.defaults setObject:data forKey:kAccountsKey];
+    [self.defaults synchronize];
+
+}
+
+-(void)deleteUser:(User *)user
+{
+    [self.accounts removeObject:user.dictionary];
+    [self.defaults removeObjectForKey:kAccountsKey];
+    
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self.accounts options:0 error:NULL];
+    [self.defaults setObject:data forKey:kAccountsKey];
+    [self.defaults synchronize];
 }
 
 @end

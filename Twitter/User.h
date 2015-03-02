@@ -21,8 +21,7 @@ extern NSString * const UserDidLogoutNotification ;
 @property (nonatomic, assign) NSInteger tweetCount;
 @property (nonatomic, assign) NSInteger followingCount;
 @property (nonatomic, assign) NSInteger followersCount;
-
-
+@property (strong, nonatomic) NSDictionary *dictionary;
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 
