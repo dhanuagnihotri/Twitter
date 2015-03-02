@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="accountsTableView" destination="1sH-EF-Afx" id="nni-Tk-DK7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,21 +15,16 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="in6-Dz-5oT">
-                    <rect key="frame" x="86.5" y="267" width="147" height="34"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                    <state key="normal" title="Login with Twitter">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="loginPressed:" destination="-1" eventType="touchUpInside" id="xRu-Ki-KZ1"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1sH-EF-Afx">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="in6-Dz-5oT" secondAttribute="centerY" id="OSk-Jj-G8o"/>
-                <constraint firstAttribute="centerX" secondItem="in6-Dz-5oT" secondAttribute="centerX" id="f3g-6L-Vuk"/>
+                <constraint firstAttribute="bottom" secondItem="1sH-EF-Afx" secondAttribute="bottom" id="13s-6y-f1C"/>
+                <constraint firstItem="1sH-EF-Afx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Ur-t1-rwj"/>
+                <constraint firstItem="1sH-EF-Afx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lgt-qY-gB6"/>
+                <constraint firstAttribute="trailing" secondItem="1sH-EF-Afx" secondAttribute="trailing" id="yaZ-ko-LpF"/>
             </constraints>
             <point key="canvasLocation" x="413" y="308"/>
         </view>

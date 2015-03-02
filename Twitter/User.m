@@ -68,7 +68,6 @@ NSString *const kCurrentUserKey = @"kCurrentUserKey";
     else
     {
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kCurrentUserKey];
-        
     }
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
